@@ -1,0 +1,325 @@
+.text-white {
+  color: #ffffff;
+}
+
+.text-gray {
+  color: #4f4e4c;
+}
+
+.text-gray-secondary {
+  color: #858585;
+}
+
+.text-yellow {
+  color: #eac43d;
+}
+
+.text-red {
+  color: #d71919;
+}
+
+.text-green {
+  color: #8dc547;
+}
+
+.text-yellow-secondary {
+  color: #c98c17;
+}
+
+.text-blue-bright {
+  color: #368cf3;
+}
+
+body {
+  background-color: #0b0b0b;
+  font-family: "Karla";
+}
+body .inputButton {
+  margin: 24px 0 0 0;
+  background-color: #eac43d;
+  color: #1e1e1e;
+  width: 356px;
+  height: 50px;
+  border-radius: 8px;
+  border: 0px;
+}
+body .inputButton:hover {
+  background-color: #c98c17;
+  color: #161616;
+}
+body .navbar {
+  height: 105px;
+  background-color: #1e1e1e;
+  border-bottom: 1px solid #4f4e4c;
+  padding: 20px 24px;
+}
+body .navbar .header-links {
+  margin: 0px 15px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+  text-decoration: none;
+}
+body .navbar .header-links:hover {
+  color: #c98c17;
+}
+body .user-data {
+  width: 100%;
+  height: 164px;
+  background-color: #161616;
+  display: flex;
+  border-bottom: 1px solid #4f4e4c;
+}
+body .user-data .user-info {
+  width: 410px;
+  height: 120px;
+  margin: 20px 24px;
+  background-color: #1b1b1b;
+  border-radius: 16px;
+  padding: 24px;
+}
+body .user-data .user-info .user-greeting {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 37px;
+  text-align: left;
+}
+body .user-data .user-info .user-notification {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+body .user-data .user-info .user-notification .user-notification-link {
+  text-decoration: none;
+}
+body .user-data .accounts-total {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 56px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  margin: 0 62px 0 auto;
+}
+body .dashboard .container > .row #chart2 .chart-header {
+  margin-bottom: 24px;
+}
+body .dashboard .container > .row #chart2 .chart-header .chart-title {
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 42px;
+}
+body .dashboard .container > .row #chart2 .chart-header .chart-button {
+  max-width: 194px;
+  max-height: 62.36px;
+  border-radius: 18px;
+  padding: 15px 42px;
+  background-color: #1b1b1b;
+  text-decoration: none;
+  float: right;
+}
+body .dashboard .container > .row #chart2 .chart-header .chart-button:hover {
+  background-color: #161616;
+  color: #c98c17;
+}
+body .dashboard .container > .row .cards {
+  margin: 36px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+body .dashboard .container > .row .cards.profile {
+  grid-template-columns: 1fr;
+}
+body .dashboard .container > .row .cards .contentCard {
+  width: 686px;
+  height: 630px;
+  background-color: #1e1e1e;
+  border-radius: 24px;
+}
+body .dashboard .container > .row .cards .contentCard.contentCard-fullsize {
+  width: 1372px;
+}
+body .dashboard .container > .row .cards .contentCard.investorProfile {
+  width: 599.24px;
+  height: 716px;
+  margin: 0 auto;
+  position: relative;
+  display: inline-block;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-header {
+  height: 111px;
+  border-bottom: 1px solid #4f4e4c;
+  padding: 24px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-header .cardHeader-title {
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 42px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-header .cardHeader-button {
+  max-width: 194px;
+  max-height: 62.36px;
+  border-radius: 18px;
+  padding: 15px 42px;
+  background-color: #1b1b1b;
+  text-decoration: none;
+  float: right;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-header .cardHeader-button:hover {
+  background-color: #161616;
+  color: #c98c17;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body {
+  padding: 32px 52px;
+  height: 500px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body #investorTips {
+  height: 100%;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body #investorTips .swiper {
+  width: 100%;
+  height: 100%;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body #investorTips .swiper .swiper-wrapper .swiper-slide p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+  text-align: justify;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .goals .progressSection {
+  border-bottom: 1px solid #4f4e4c;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .goals .progressSection:last-child {
+  border-bottom: 0px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .goals .progressSection .progress-info {
+  margin: 14px 0;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .goals .progressSection .progress-info .goalData {
+  display: inline-block;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .goals .progressSection .progress-info .goalData .goalDate {
+  font-size: 14px;
+  line-height: 16px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .goals .progressSection .progress-info .goalData .data {
+  margin: 0 6px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .goals .progressSection .progress-info .goalValues {
+  display: inline-block;
+  float: right;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .goals .progressSection .progress-info .goalValues .goalCurrentValue {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .goals .progressSection .progress {
+  border-radius: 0px;
+  background-color: #161616;
+  margin-bottom: 24px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .goals .progressSection .progress .progress-bar {
+  background-color: #2a5c99;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm {
+  width: 50%;
+  display: inline-block;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm {
+  width: 49%;
+  border: 1px solid white;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .inputLabel {
+  display: block;
+  margin: 8px 0;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .inputLabel.sliderLabel {
+  margin: 8px 0 0 0;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .inputField {
+  background-color: #161616;
+  width: 356px;
+  height: 50px;
+  border-radius: 8px;
+  border: 0px;
+  color: #ffffff;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .inputField:focus {
+  border: 1px solid #1b1b1b;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm #valuePrice {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  position: relative;
+  top: -20px;
+  left: 20px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .chart-section {
+  width: 50%;
+  float: right;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .extracts .extract-info {
+  border-bottom: 1px solid #4f4e4c;
+  margin: 14px 0;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .extracts .extract-info:last-child {
+  border-bottom: 0px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .extracts .extract-info .extractData {
+  display: inline-grid;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .extracts .extract-info .extractData .extractTitle {
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .extracts .extract-info .extractData .extractCategory {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .extracts .extract-info .extractData .extractDate {
+  font-size: 14px;
+  line-height: 16px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .extracts .extract-info .extractData .data {
+  margin: 0 6px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .extracts .extract-info .extractValues {
+  float: right;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .extracts .extract-info .extractValues .extractCurrentValue {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .extracts .extract {
+  border-radius: 0px;
+  background-color: #161616;
+  margin-bottom: 24px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .extracts .extract .progress-bar {
+  background-color: #2a5c99;
+}/*# sourceMappingURL=styles.css.map */

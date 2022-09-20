@@ -1,0 +1,354 @@
+$color-white: #ffffff;
+$color-black: #1b1b1b;
+$color-background: #0b0b0b;
+$color-background-2: #161616;
+$color-gray-dark: #1e1e1e;
+$color-yellow: #eac43d;
+$color-yellow-secondary: #c98c17;
+$color-gray: #4f4e4c;
+$color-gray-secondary: #858585;
+$color-red: #d71919;
+$color-green: #8dc547;
+$color-blue: #2a5c99;
+$color-blue-light: #8ab9f1;
+$color-blue-bright: #368cf3;
+$color-purple: #8f4ae7;
+
+.text-white {
+    color: $color-white;
+}
+.text-gray {
+    color: $color-gray;
+}
+.text-gray-secondary {
+    color: $color-gray-secondary;
+}
+.text-yellow {
+    color: $color-yellow;
+}
+.text-red {
+    color: $color-red;
+}
+.text-green {
+    color: $color-green;
+}
+.text-yellow-secondary {
+    color: $color-yellow-secondary;
+}
+.text-blue-bright {
+    color: $color-blue-bright;
+}
+
+body {
+    background-color: $color-background;
+    font-family: "Karla";
+    .inputButton {
+        margin: 24px 0 0 0;
+        background-color: $color-yellow;
+        color: $color-gray-dark;
+        width: 356px;
+        height: 50px;
+        border-radius: 8px;
+        border: 0px;
+        &:hover {
+            background-color: $color-yellow-secondary;
+            color: $color-background-2;
+        }
+    }
+    .navbar {
+        height: 105px;
+        background-color: $color-gray-dark;
+        border-bottom: 1px solid $color-gray;
+        padding: 20px 24px;
+        .header-links {
+            margin: 0px 15px;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 24px;
+            line-height: 28px;
+            text-decoration: none;
+            &:hover {
+                color: $color-yellow-secondary;
+            }
+        }
+    }
+    .user-data {
+        width: 100%;
+        height: 164px;
+        background-color: $color-background-2;
+        display: flex;
+        border-bottom: 1px solid $color-gray;
+        .user-info {
+            width: 410px;
+            height: 120px;
+            margin: 20px 24px;
+            background-color: $color-black;
+            border-radius: 16px;
+
+            padding: 24px;
+            .user-greeting {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 32px;
+                line-height: 37px;
+                text-align: left;
+            }
+            .user-notification {
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 28px;
+                letter-spacing: 0.02em;
+                text-align: left;
+                .user-notification-link {
+                    text-decoration: none;
+                }
+            }
+        }
+        .accounts-total {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 48px;
+            line-height: 56px;
+            display: flex;
+            align-items: center;
+            text-align: right;
+            margin: 0 62px 0 auto;
+        }
+    }
+    .dashboard {
+        .container > .row {
+            #chart2 {
+                .chart-header {
+                    margin-bottom: 24px;
+                    .chart-title {
+                        font-weight: 400;
+                        font-size: 36px;
+                        line-height: 42px;
+                    }
+                    .chart-button {
+                        max-width: 194px;
+                        max-height: 62.36px;
+                        border-radius: 18px;
+                        padding: 15px 42px;
+                        background-color: $color-black;
+                        text-decoration: none;
+                        float: right;
+                        &:hover {
+                            background-color: $color-background-2;
+                            color: $color-yellow-secondary;
+                        }
+                    }
+                }
+            }
+            .cards{
+                margin: 36px auto;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 20px;
+                &.profile{
+                    grid-template-columns: 1fr;
+                }
+                .contentCard {
+                    width: 686px;
+                    height: 630px;
+                    background-color: $color-gray-dark;
+                    border-radius: 24px;
+                    &.contentCard-fullsize {
+                        width: 1372px;
+                    }
+                    &.investorProfile {
+                        width: 599.24px;
+                        height: 716px;
+                        margin: 0 auto;
+                        position: relative;
+                        display: inline-block;
+                    }
+                    .contentCard-header {
+                        height: 111px;
+                        border-bottom: 1px solid $color-gray;
+                        padding: 24px;
+                        .cardHeader-title {
+                            font-weight: 400;
+                            font-size: 36px;
+                            line-height: 42px;
+                        }
+                        .cardHeader-button {
+                            max-width: 194px;
+                            max-height: 62.36px;
+                            border-radius: 18px;
+                            padding: 15px 42px;
+                            background-color: $color-black;
+                            text-decoration: none;
+                            float: right;
+                            &:hover {
+                                background-color: $color-background-2;
+                                color: $color-yellow-secondary;
+                            }
+                        }
+                    }
+                    .contentCard-body {
+                        padding: 32px 52px;
+                        height: 500px;
+                        #investorTips {
+                            height: 100%;
+                            .swiper {
+                                width: 100%;
+                                height: 100%;
+
+                                .swiper-wrapper .swiper-slide {
+                                    p {
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        font-size: 24px;
+                                        line-height: 30px;
+                                        text-align: justify;
+                                    }
+                                }
+                            }
+                        }
+                        .goals {
+                            .progressSection {
+                                border-bottom: 1px solid $color-gray;
+                                &:last-child {
+                                    border-bottom: 0px;
+                                }
+                                .progress-info {
+                                    margin: 14px 0;
+                                    font-style: normal;
+                                    font-weight: 300;
+                                    font-size: 24px;
+                                    line-height: 28px;
+                                    .goalData {
+                                        display: inline-block;
+                                        .goalDate {
+                                            font-size: 14px;
+                                            line-height: 16px;
+                                        }
+                                        .data {
+                                            margin: 0 6px;
+                                        }
+                                    }
+                                    .goalValues {
+                                        display: inline-block;
+                                        float: right;
+                                        .goalCurrentValue {
+                                            font-weight: 400;
+                                            font-size: 18px;
+                                            line-height: 21px;
+                                        }
+                                    }
+                                }
+                                .progress {
+                                    border-radius: 0px;
+                                    background-color: $color-background-2;
+                                    margin-bottom: 24px;
+
+                                    .progress-bar {
+                                        background-color: $color-blue;
+                                    }
+                                }
+                                .goalCompletion {
+                                }
+                            }
+                        }
+                        .inOutForm {
+                            width: 50%;
+                            display: inline-block;
+                            &.goalsForm {
+                                width: 49%;
+                                border: 1px solid white;
+                            }
+                            .inputLabel {
+                                display: block;
+                                margin: 8px 0;
+                                font-style: normal;
+                                font-weight: 700;
+                                font-size: 12px;
+                                line-height: 15px;
+                                &.sliderLabel {
+                                    margin: 8px 0 0 0;
+                                }
+                            }
+                            .inputField {
+                                background-color: $color-background-2;
+                                width: 356px;
+                                height: 50px;
+                                border-radius: 8px;
+                                border: 0px;
+                                color: $color-white;
+                                &:focus {
+                                    border: 1px solid $color-black;
+                                }
+                            }
+                            #valuePrice {
+                                font-style: normal;
+                                font-weight: 400;
+                                font-size: 24px;
+                                line-height: 28px;
+                                position: relative;
+                                top: -20px;
+                                left: 20px;
+                            }
+                        }
+                        .chart-section {
+                            width: 50%;
+                            float: right;
+                        }
+                        .extracts {
+                            .extract-info {
+                                border-bottom: 1px solid $color-gray;
+                                &:last-child {
+                                    border-bottom: 0px;
+                                }
+                                margin: 14px 0;
+                                font-style: normal;
+                                font-weight: 300;
+                                font-size: 24px;
+                                line-height: 28px;
+                                .extractData {
+                                    display: inline-grid;
+                                    .extractTitle {
+                                        font-weight: 300;
+                                        font-size: 24px;
+                                        line-height: 28px;
+                                    }
+                                    .extractCategory {
+                                        font-weight: 700;
+                                        font-size: 14px;
+                                        line-height: 16px;
+                                    }
+                                    .extractDate {
+                                        font-size: 14px;
+                                        line-height: 16px;
+                                    }
+                                    .data {
+                                        margin: 0 6px;
+                                    }
+                                }
+                                .extractValues {
+                                    float: right;
+                                    .extractCurrentValue {
+                                        font-weight: 400;
+                                        font-size: 18px;
+                                        line-height: 21px;
+                                    }
+                                }
+                            }
+                            .extract {
+                                border-radius: 0px;
+                                background-color: $color-background-2;
+                                margin-bottom: 24px;
+
+                                .progress-bar {
+                                    background-color: $color-blue;
+                                }
+                            }
+                            .extractCompletion {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
