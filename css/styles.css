@@ -35,10 +35,10 @@ body {
   font-family: "Karla";
 }
 body .inputButton {
-  margin: 24px 0 0 0;
+  margin: 16px 0 0 0;
   background-color: #eac43d;
   color: #1e1e1e;
-  width: 356px;
+  width: 100%;
   height: 50px;
   border-radius: 8px;
   border: 0px;
@@ -106,6 +106,66 @@ body .user-data .accounts-total {
   text-align: right;
   margin: 0 62px 0 auto;
 }
+body .dashboard .container .stepper {
+  max-width: 446px;
+  height: 52px;
+  margin: 0 auto 40px;
+  position: relative;
+  top: 40px;
+}
+body .dashboard .container .progressbar-2 {
+  width: 0px;
+  height: 2px;
+  position: absolute;
+  top: 24px;
+  right: 50px;
+  background-color: #2F2E2C;
+}
+body .dashboard .container .progressbar-2.half {
+  width: 180px;
+  background-color: #eac43d;
+}
+body .dashboard .container .progressbar-1 {
+  width: 0px;
+  height: 2px;
+  position: absolute;
+  top: 24px;
+  left: 50px;
+  background-color: #2F2E2C;
+}
+body .dashboard .container .progressbar-1.half {
+  width: 180px;
+  background-color: #eac43d;
+}
+body .dashboard .container .steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+}
+body .dashboard .container .steps .step-number {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #2F2E2C;
+}
+body .dashboard .container .steps .step-number > span {
+  font-style: normal;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.015em;
+  width: 72px;
+}
+body .dashboard .container .steps .step-number .step {
+  z-index: 1;
+}
+body .dashboard .container .steps .step-number.active {
+  background-color: #eac43d;
+}
 body .dashboard .container > .row #chart2 .chart-header {
   margin-bottom: 24px;
 }
@@ -135,6 +195,9 @@ body .dashboard .container > .row .cards {
 }
 body .dashboard .container > .row .cards.profile {
   grid-template-columns: 1fr;
+}
+body .dashboard .container > .row .cards.hide {
+  display: none;
 }
 body .dashboard .container > .row .cards .contentCard {
   width: 686px;
@@ -240,6 +303,82 @@ body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutFo
 body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm {
   width: 49%;
   border: 1px solid white;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions {
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .questionTitle {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio {
+  display: block;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  text-align: left;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio .answerText {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  color: #858585;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio + .radio {
+  margin-top: 8px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio:last-child {
+  margin-bottom: 8px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio input {
+  display: none;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio input + span {
+  display: inline-block;
+  position: relative;
+  padding-left: 30px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio input + span:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-radius: 50%;
+  margin-right: 5px;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #858585;
+  background: #1e1e1e;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio input + span:after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: #eac43d;
+  position: absolute;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  opacity: 0;
+  transform: scale(0, 0);
+  transition: all 0.2s cubic-bezier(0.64, 0.57, 0.67, 1.53);
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio input:checked + span:after {
+  opacity: 1;
+  transform: scale(1, 1);
 }
 body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .inputLabel {
   display: block;
