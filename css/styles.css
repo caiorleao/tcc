@@ -47,6 +47,19 @@ body .inputButton:hover {
   background-color: #c98c17;
   color: #161616;
 }
+body .inputButtonForm {
+  width: 200px;
+  margin: 22px 50px;
+  background-color: #4f4e4c;
+  color: #1e1e1e;
+  height: 50px;
+  border-radius: 8px;
+  border: 0px;
+}
+body .inputButtonForm:hover {
+  background-color: #2f2e2c;
+  color: #161616;
+}
 body .navbar {
   height: 105px;
   background-color: #1e1e1e;
@@ -119,7 +132,7 @@ body .dashboard .container .progressbar-2 {
   position: absolute;
   top: 24px;
   right: 50px;
-  background-color: #2F2E2C;
+  background-color: #2f2e2c;
 }
 body .dashboard .container .progressbar-2.half {
   width: 180px;
@@ -131,7 +144,7 @@ body .dashboard .container .progressbar-1 {
   position: absolute;
   top: 24px;
   left: 50px;
-  background-color: #2F2E2C;
+  background-color: #2f2e2c;
 }
 body .dashboard .container .progressbar-1.half {
   width: 180px;
@@ -151,7 +164,7 @@ body .dashboard .container .steps .step-number {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #2F2E2C;
+  background-color: #2f2e2c;
 }
 body .dashboard .container .steps .step-number > span {
   font-style: normal;
@@ -193,6 +206,12 @@ body .dashboard .container > .row .cards {
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
 }
+body .dashboard .container > .row .cards.cadastro {
+  margin: 36px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
 body .dashboard .container > .row .cards.profile {
   grid-template-columns: 1fr;
 }
@@ -208,7 +227,11 @@ body .dashboard .container > .row .cards .contentCard {
 body .dashboard .container > .row .cards .contentCard.contentCard-fullsize {
   width: 1372px;
 }
-body .dashboard .container > .row .cards .contentCard.investorProfile {
+body .dashboard .container > .row .cards .contentCard.contentCard-three {
+  width: 328px;
+  height: 660px;
+}
+body .dashboard .container > .row .cards .contentCard.investorProfile, body .dashboard .container > .row .cards .contentCard.cadastroCard {
   width: 599.24px;
   height: 716px;
   margin: 0 auto;
@@ -241,6 +264,27 @@ body .dashboard .container > .row .cards .contentCard .contentCard-header .cardH
 body .dashboard .container > .row .cards .contentCard .contentCard-body {
   padding: 32px 52px;
   height: 500px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body.cadastro-body {
+  padding: 5px 16px;
+  height: 425px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body.cadastro-body .addBanks .banksTitles {
+  margin: 0px 77px;
+  width: 100%;
+  font-style: normal;
+  text-align: center;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body.cadastro-body .addBanks .banks {
+  color: #858585;
+  font-weight: 700;
+  font-size: 12px;
+  width: 212px;
+  line-height: 15px;
+  margin: 10px 40px;
 }
 body .dashboard .container > .row .cards .contentCard .contentCard-body #investorTips {
   height: 100%;
@@ -296,20 +340,28 @@ body .dashboard .container > .row .cards .contentCard .contentCard-body .goals .
 body .dashboard .container > .row .cards .contentCard .contentCard-body .goals .progressSection .progress .progress-bar {
   background-color: #2a5c99;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro {
   width: 50%;
   display: inline-block;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.cadastro,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.cadastro {
+  width: 325px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.goalsForm {
   width: 49%;
   border: 1px solid white;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .questions {
   max-width: -webkit-max-content;
   max-width: -moz-max-content;
   max-width: max-content;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .questionTitle {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .questionTitle,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .questions .questionTitle {
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
@@ -317,7 +369,8 @@ body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutFo
   width: -moz-max-content;
   width: max-content;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .questions .radio {
   display: block;
   cursor: pointer;
   -webkit-user-select: none;
@@ -326,7 +379,8 @@ body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutFo
           user-select: none;
   text-align: left;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio .answerText {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio .answerText,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .questions .radio .answerText {
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
@@ -335,21 +389,26 @@ body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutFo
   width: max-content;
   color: #858585;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio + .radio {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio + .radio,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .questions .radio + .radio {
   margin-top: 8px;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio:last-child {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio:last-child,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .questions .radio:last-child {
   margin-bottom: 8px;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio input {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio input,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .questions .radio input {
   display: none;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio input + span {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio input + span,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .questions .radio input + span {
   display: inline-block;
   position: relative;
   padding-left: 30px;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio input + span:before {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio input + span:before,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .questions .radio input + span:before {
   content: "";
   display: block;
   position: absolute;
@@ -362,7 +421,8 @@ body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutFo
   border: 1px solid #858585;
   background: #1e1e1e;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio input + span:after {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio input + span:after,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .questions .radio input + span:after {
   content: "";
   display: block;
   width: 10px;
@@ -376,11 +436,13 @@ body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutFo
   transform: scale(0, 0);
   transition: all 0.2s cubic-bezier(0.64, 0.57, 0.67, 1.53);
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio input:checked + span:after {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions .radio input:checked + span:after,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .questions .radio input:checked + span:after {
   opacity: 1;
   transform: scale(1, 1);
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .inputLabel {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .inputLabel,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .inputLabel {
   display: block;
   margin: 8px 0;
   font-style: normal;
@@ -388,10 +450,29 @@ body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutFo
   font-size: 12px;
   line-height: 15px;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .inputLabel.sliderLabel {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .inputLabel.sliderLabel,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .inputLabel.sliderLabel {
   margin: 8px 0 0 0;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .inputField {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .error_message,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .error_message {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 10px;
+  color: #d71919;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 1px 0 4px 0;
+  display: none;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .error_message.show,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .error_message.show {
+  display: block;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .inputField,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .inputField {
   background-color: #161616;
   width: 356px;
   height: 50px;
@@ -399,10 +480,20 @@ body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutFo
   border: 0px;
   color: #ffffff;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .inputField:focus {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .inputField:focus,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .inputField:focus {
   border: 1px solid #1b1b1b;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm #valuePrice {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .inputField-cadastro,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .inputField-cadastro {
+  width: 300px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .inputField-cadastro.error,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .inputField-cadastro.error {
+  border: 1px solid #d71919;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm #valuePrice,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro #valuePrice {
   font-style: normal;
   font-weight: 400;
   font-size: 24px;

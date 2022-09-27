@@ -3,7 +3,7 @@ $color-black: #1b1b1b;
 $color-background: #0b0b0b;
 $color-background-2: #161616;
 $color-gray-dark: #1e1e1e;
-$color-gray-light-dark: #2F2E2C;
+$color-gray-light-dark: #2f2e2c;
 $color-yellow: #eac43d;
 $color-yellow-secondary: #c98c17;
 $color-gray: #4f4e4c;
@@ -53,6 +53,19 @@ body {
         border: 0px;
         &:hover {
             background-color: $color-yellow-secondary;
+            color: $color-background-2;
+        }
+    }
+    .inputButtonForm {
+        width: 200px;
+        margin: 22px 50px;
+        background-color: $color-gray;
+        color: $color-gray-dark;
+        height: 50px;
+        border-radius: 8px;
+        border: 0px;
+        &:hover {
+            background-color: $color-gray-light-dark;
             color: $color-background-2;
         }
     }
@@ -132,7 +145,7 @@ body {
                 top: 24px;
                 right: 50px;
                 background-color: $color-gray-light-dark;
-                &.half{
+                &.half {
                     width: 180px;
                     background-color: $color-yellow;
                 }
@@ -144,7 +157,7 @@ body {
                 top: 24px;
                 left: 50px;
                 background-color: $color-gray-light-dark;
-                &.half{
+                &.half {
                     width: 180px;
                     background-color: $color-yellow;
                 }
@@ -171,10 +184,10 @@ body {
                         letter-spacing: 0.015em;
                         width: 72px;
                     }
-                    .step{
+                    .step {
                         z-index: 1;
                     }
-                    &.active{
+                    &.active {
                         background-color: $color-yellow;
                     }
                 }
@@ -208,6 +221,12 @@ body {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     grid-gap: 20px;
+                    &.cadastro {
+                        margin: 36px auto;
+                        display: grid;
+                        grid-template-columns: 1fr 1fr 1fr;
+                        grid-gap: 20px;
+                    }
                     &.profile {
                         grid-template-columns: 1fr;
                     }
@@ -222,7 +241,12 @@ body {
                         &.contentCard-fullsize {
                             width: 1372px;
                         }
-                        &.investorProfile {
+                        &.contentCard-three {
+                            width: 328px;
+                            height: 660px;
+                        }
+                        &.investorProfile,
+                        &.cadastroCard {
                             width: 599.24px;
                             height: 716px;
                             margin: 0 auto;
@@ -255,6 +279,29 @@ body {
                         .contentCard-body {
                             padding: 32px 52px;
                             height: 500px;
+                            &.cadastro-body {
+                                padding: 5px 16px;
+                                height: 425px;
+                                .addBanks {
+                                    .banksTitles {
+                                        margin: 0px 77px;
+                                        width: 100%;
+                                        font-style: normal;
+                                        text-align: center;
+                                        font-weight: 700;
+                                        font-size: 12px;
+                                        line-height: 15px;
+                                    }
+                                    .banks {
+                                        color: $color-gray-secondary;
+                                        font-weight: 700;
+                                        font-size: 12px;
+                                        width: 212px;
+                                        line-height: 15px;
+                                        margin: 10px 40px;
+                                    }
+                                }
+                            }
                             #investorTips {
                                 height: 100%;
                                 .swiper {
@@ -317,9 +364,13 @@ body {
                                     }
                                 }
                             }
-                            .inOutForm {
+                            .inOutForm,
+                            .cadastro {
                                 width: 50%;
                                 display: inline-block;
+                                &.cadastro {
+                                    width: 325px;
+                                }
                                 &.goalsForm {
                                     width: 49%;
                                     border: 1px solid white;
@@ -402,6 +453,19 @@ body {
                                         margin: 8px 0 0 0;
                                     }
                                 }
+                                .error_message {
+                                    font-style: normal;
+                                    font-weight: 700;
+                                    font-size: 10px;
+                                    line-height: 10px;
+                                    color: $color-red;
+                                    width: max-content;
+                                    margin: 1px 0 4px 0;
+                                    display: none;
+                                    &.show{
+                                        display: block;
+                                    }
+                                }
                                 .inputField {
                                     background-color: $color-background-2;
                                     width: 356px;
@@ -411,6 +475,12 @@ body {
                                     color: $color-white;
                                     &:focus {
                                         border: 1px solid $color-black;
+                                    }
+                                    &-cadastro {
+                                        width: 300px;
+                                        &.error{
+                                            border: 1px solid $color-red;
+                                        }
                                     }
                                 }
                                 #valuePrice {
