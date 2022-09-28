@@ -34,6 +34,76 @@ body {
   background-color: #0b0b0b;
   font-family: "Karla";
 }
+body .loginLogo {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 100px auto 0;
+}
+body .loginForm .inputs {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 100px auto 0;
+}
+body .loginForm .inputs .error_message {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 10px;
+  color: #d71919;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 1px 0 4px 0;
+  display: none;
+}
+body .loginForm .inputs .error_message.show {
+  display: block;
+}
+body .loginForm .inputs .inputField {
+  background-color: #161616;
+  width: 356px;
+  height: 50px;
+  border-radius: 8px;
+  border: 0px;
+  color: #ffffff;
+  margin: 10px 0;
+}
+body .loginForm .inputs .inputField:focus {
+  border: 1px solid #1b1b1b;
+}
+body .loginForm .inputs .inputField.error {
+  border: 1px solid #d71919;
+}
+body .loginForm .inputs .inputButton {
+  margin: 16px 0 0 0;
+  background-color: #eac43d;
+  color: #1e1e1e;
+  width: 100%;
+  height: 50px;
+  border-radius: 8px;
+  border: 0px;
+}
+body .loginForm .inputs .inputButton:hover {
+  background-color: #c98c17;
+  color: #161616;
+}
+body .loginForm .inputs .error_message {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 10px;
+  color: #d71919;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 1px 0 4px 0;
+  display: none;
+}
+body .loginForm .inputs .error_message.show {
+  display: block;
+}
 body .inputButton {
   margin: 16px 0 0 0;
   background-color: #eac43d;
@@ -50,7 +120,7 @@ body .inputButton:hover {
 body .inputButtonForm {
   width: 200px;
   margin: 22px 50px;
-  background-color: #4f4e4c;
+  background-color: #858585;
   color: #1e1e1e;
   height: 50px;
   border-radius: 8px;
@@ -58,6 +128,14 @@ body .inputButtonForm {
 }
 body .inputButtonForm:hover {
   background-color: #2f2e2c;
+  color: #161616;
+}
+body .inputButtonForm.cadastrarUsuario {
+  background-color: #eac43d;
+  color: #1e1e1e;
+}
+body .inputButtonForm.cadastrarUsuario:hover {
+  background-color: #c98c17;
   color: #161616;
 }
 body .navbar {
@@ -125,6 +203,9 @@ body .dashboard .container .stepper {
   margin: 0 auto 40px;
   position: relative;
   top: 40px;
+}
+body .dashboard .container .stepper.stepper-cadastro {
+  margin: 0px 372px 40px;
 }
 body .dashboard .container .progressbar-2 {
   width: 0px;
@@ -211,6 +292,9 @@ body .dashboard .container > .row .cards.cadastro {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
+}
+body .dashboard .container > .row .cards.login {
+  grid-template-columns: 1fr;
 }
 body .dashboard .container > .row .cards.profile {
   grid-template-columns: 1fr;

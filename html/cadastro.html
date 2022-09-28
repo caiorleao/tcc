@@ -16,67 +16,86 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand navbar-dark" aria-label="Second navbar example">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="../img/logo.svg" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02"
+                aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsExample02">
+                
+            </div>
+        </div>
+    </nav>
     <div class="content">
-
         <div class="dashboard">
             <div class="container">
                 <div class="row ">
                     <div class="cards cadastro">
-                        <div class="contentCard contentCard-three manualInout">
-                            <div class="contentCard-body cadastro-body">
+                        <div class="contentCard contentCard-three card1 manualInout">
+                            <div class="contentCard-body cadastro-body" >
                                 <div class="inOutForm cadastroForm text-white">
-                                    
+
                                     <label for="inputFirstName" class="inputLabel">Nome</label>
                                     <input type="text" class="form-control inputField inputField-cadastro"
                                         id="inputFirstName" placeholder="Nome">
-                                    <p class="error_message errorFirstName">Deve conter pelo menos 2 caracteres, números não são
+                                    <p class="error_message errorFirstName">Deve conter pelo menos 2 caracteres, números
+                                        não são
                                         aceitos.</p>
 
                                     <label for="inputLastName" class="inputLabel">Sobrenome</label>
                                     <input type="text" class="form-control inputField inputField-cadastro"
                                         id="inputLastName" placeholder="Sobrenome">
-                                        <p class="error_message errorLastName">Deve conter pelo menos 2 caracteres, números não são
-                                            aceitos.</p>
+                                    <p class="error_message errorLastName">Deve conter pelo menos 2 caracteres, números
+                                        não são
+                                        aceitos.</p>
 
                                     <label for="inputEmail" class="inputLabel">Email</label>
                                     <input type="text" class="form-control inputField inputField-cadastro"
                                         id="inputEmail" placeholder="Email">
-                                        <p class="error_message errorEmail">Deve conter pelo menos 2 caracteres, números não são
-                                            aceitos.</p>
+                                    <p class="error_message errorEmail">Deve conter pelo menos 2 caracteres, números não
+                                        são
+                                        aceitos.</p>
 
                                     <label for="inputCPF" class="inputLabel">CPF</label>
                                     <input type="text" class="form-control inputField inputField-cadastro" id="inputCPF"
                                         placeholder="CPF">
-                                        <p class="error_message errorCPF">Deve conter pelo menos 2 caracteres, números não são
-                                            aceitos.</p>
+                                    <p class="error_message errorCPF">Deve conter pelo menos 2 caracteres, números não
+                                        são
+                                        aceitos.</p>
 
                                     <label for="inputBirthday" class="inputLabel">Data de nascimento</label>
                                     <input type="text" class="form-control inputField inputField-cadastro"
                                         id="inputBirthday" placeholder="Data de nascimento">
-                                        <p class="error_message errorBirthday">Deve conter pelo menos 2 caracteres, números não são
-                                            aceitos.</p>
+                                    <p class="error_message errorBirthday">Deve conter pelo menos 2 caracteres, números
+                                        não são
+                                        aceitos.</p>
                                     <label for="inputPassword" class="inputLabel">Senha</label>
                                     <input type="password" class="form-control inputField inputField-cadastro"
                                         id="inputPassword" placeholder="Senha">
-                                        <p class="error_message errorPassword">Deve conter pelo menos 2 caracteres, números não são
-                                            aceitos.</p>
+                                    <p class="error_message errorPassword">Deve conter pelo menos 2 caracteres, números
+                                        não são
+                                        aceitos.</p>
 
                                     <label for="inputPasswordConfirm" class="inputLabel">Confirmar senha</label>
                                     <input type="password" class="form-control inputField inputField-cadastro"
                                         id="inputPasswordConfirm" placeholder="Confirmar senha">
-                                        <p class="error_message errorPasswordConfirm">Deve conter pelo menos 2 caracteres, números não são
-                                            aceitos.</p>
+                                    <p class="error_message errorPasswordConfirm">Deve conter pelo menos 2 caracteres,
+                                        números não são
+                                        aceitos.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="contentCard contentCard-three manualInout">
+                        <div class="contentCard contentCard-three card2 manualInout">
                             <div class="contentCard-body cadastro-body">
                                 <div class="inOutForm cadastroForm text-white">
                                     <label for="inputCellphone" class="inputLabel">Telefone</label>
                                     <input type="text" class="form-control inputField inputField-cadastro"
                                         id="inputCellphone" placeholder="11 99817-3204">
-                                        <p class="error_message errorCellphone">Deve conter pelo menos 2 caracteres, números não são
-                                            aceitos.</p>
+                                    <p class="error_message errorCellphone">Deve conter pelo menos 2 caracteres, números
+                                        não são
+                                        aceitos.</p>
                                     <label for="inputBank" class="inputLabel">Banco</label>
                                     <select id="inputBank" class="form-control inputField inputField-cadastro">
                                         <option selected value="itau">Itaú</option>
@@ -96,8 +115,9 @@
                                     <label for="inputToken" class="inputLabel">Token de acesso bancário </label>
                                     <input type="text" class="form-control inputField inputField-cadastro"
                                         id="inputToken" placeholder="Token">
-                                        <p class="error_message errorToken">Deve conter pelo menos 2 caracteres, números não são
-                                            aceitos.</p>
+                                    <p class="error_message errorToken">Deve conter pelo menos 2 caracteres, números não
+                                        são
+                                        aceitos.</p>
                                     <button class="inputButtonForm" data-val="3" id="addBankAccount">Adicionar</button>
                                     <div class="addBanks">
                                         <p class="banksTitles">Bancos cadastrados</p>
@@ -108,7 +128,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="contentCard contentCard-three manualInout">
+                        <div class="contentCard contentCard-three card3  manualInout">
                             <div class="contentCard-body cadastro-body">
                                 <div class="inOutForm cadastroForm text-white">
                                     <label for="inputCEP" class="inputLabel">CEP</label>
@@ -157,7 +177,7 @@
                                         <option value="TO">Tocantins</option>
                                         <option value="EX">Estrangeiro</option>
                                     </select>
-                                    <button class="inputButtonForm" id="createUser">Adicionar</button>
+                                    <button class="inputButtonForm cadastrarUsuario" id="createUser">Cadastrar Usuário</button>
 
                                 </div>
                             </div>
@@ -171,7 +191,7 @@
 
 
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <p class="col-md-4 mb-0 text-muted">© 2022 Company, Inc</p>
+        <p class="col-md-4 mb-0 text-muted">© 2022 FinancePie</p>
 
         <a href="/"
             class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
@@ -179,14 +199,6 @@
                 <use xlink:href="#bootstrap"></use>
             </svg>
         </a>
-
-        <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Perfil de investidor</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Metas</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
-        </ul>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"

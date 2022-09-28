@@ -12,10 +12,19 @@ $("#inputCEP").mask('00000-000');
 $("#inputBirthday").mask('00/00/0000');
 $('#inputCellphone').mask(SPMaskBehavior, spOptions);
 
+let emailValid = false,
+    cpfValid = false,
+    passwordValid = false
+
+
 function validateEmail(email) {
-    return email.match(
-        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    )
+    if (email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+        $("#inputFirstName").hasClass('error') ? $("#inputFirstName").removeClass('error') : ''
+        emailValid = true
+    } else {
+        emailValid = false
+    }
+    return emailValid
 }
 
 function validatePassword(password, confirm) {
@@ -23,13 +32,15 @@ function validatePassword(password, confirm) {
     if (!re.test(password) || password != confirm) {
         $(`.errorPassword`).addClass('show')
         $(`#inputPassword`).addClass('error')
-        return false
+        cpfValid = false
     } else {
         $(`.errorPassword`).removeClass('show')
         $(`#inputPassword`).removeClass('error')
-        return true
+        cpfValid = true
     }
+    return cpfValid
 }
+
 
 let banks = []
 
@@ -39,7 +50,7 @@ $("#createUser").on("click", function () {
 })
 
 $("#addBankAccount").on("click", function () {
-    if($("#inputToken").val() != ''){
+    if ($("#inputToken").val() != '') {
         banks.push({
             "name": $('#inputBank').find(":selected").val(),
             "account": $('#inputAccountType').find(":selected").val(),
@@ -49,19 +60,23 @@ $("#addBankAccount").on("click", function () {
         $("#inputToken").val('')
         $(`.errorToken`).removeClass('show')
         $(`#inputToken`).removeClass('error')
-    }else{
+    } else {
         $(`.errorToken`).addClass('show')
         $(`#inputToken`).addClass('error')
     }
 })
 
+
 function isValid() {
-    if (hasNoErrors()) {
-        if (validateEmail($('#inputEmail').val()) && validatePassword($('#inputPassword').text(), $('#inputPasswordConfirm').val()) && banks.lenght >= 0) {
+    if(!isEmpty()){
+        if (validateCPF($('#inputCPF').val()) && validateEmail($('#inputEmail').val()) && validatePassword($('#inputPassword').text(), $('#inputPasswordConfirm').val()) && banks.lenght >= 0) {
             return true
+        }else{
+            return false
         }
-    }
-    return false;
+    }else{
+        return false;
+    }   
 }
 
 function registerUser() {
@@ -87,14 +102,43 @@ function registerUser() {
     }
 }
 
-function hasNoErrors() {
-    let noErrors = true
+function isEmpty() {
+    let isEmpty = false
     $('.inputField-cadastro').each(function (index, field) {
         if ($(field).val() == "" && $(field).attr('id') != 'inputToken') {
             $(`.error${$(field).attr('id').replace("input", "")}`).addClass('show')
             $(`#${$(field).attr('id')}`).addClass('error')
-            noErrors = false
+            isEmpty = true
+        } else {
+            $(`.error${$(field).attr('id').replace("input", "")}`).removeClass('show')
+            $(`#${$(field).attr('id')}`).removeClass('error')
         }
     });
-    return noErrors
+    return isEmpty
+}
+
+
+function validateCPF(cpf){
+    cpf = cpf.replace(/\D/g, '');
+    if(cpf.toString().length != 11 || /^(\d)\1{10}$/.test(cpf)) return false;
+    var result = true;
+    [9,10].forEach(function(j){
+        var soma = 0, r;
+        cpf.split(/(?=)/).splice(0,j).forEach(function(e, i){
+            soma += parseInt(e) * ((j+2)-(i+1));
+        });
+        r = soma % 11;
+        r = (r <2)?0:11-r;
+        if(r != cpf.substring(j, j+1)) result = false;
+    });
+
+    if(!result){
+        $(`.errorCPF`).addClass('show')
+        $(`#inputCPF`).addClass('error')
+    }else{
+        $(`.errorToken`).removeClass('show')
+        $(`#inputToken`).removeClass('error')
+    }
+    cpfValid = result
+    return cpfValid;
 }

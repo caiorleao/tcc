@@ -1,29 +1,34 @@
-const validateEmail = (email) => {
-    return email.match(
-        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    )
-}
+let emailValid = false,
+    passwordValid = false
 
-const validatePassword = (password) => {
-    let re = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/
-    return re.test(password)
-}
-
-const validate = () => {
-    const email = $('#email').val();
-    const password = $('#password').val();
-    if (validateEmail(email)) {
-        $('#email').addClass('success')
-        if (validatePassword(password)) {
-            login(email, password)
-        }
+function validateEmail(email) {
+    if (email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+        $("#inputEmail").hasClass('error') ? $("#inputEmail").removeClass('error') : ''
+        $(`.errorEmail`).hasClass('show') ? $(`.errorEmail`).removeClass('show') : ''
+        emailValid = true
     } else {
-        $('#email').addClass('error')
+        $("#inputEmail").addClass('error')
+        $(`.errorEmail`).addClass('show')
+        emailValid = false
     }
-    return false;
+    return emailValid
 }
 
-const login = (email, password) => {
+function validatePassword(password) {
+    let re = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/
+    if (!re.test(password) || password !='') {
+        $(`.errorPassword`).addClass('show')
+        $(`#inputPassword`).addClass('error')
+        cpfValid = false
+    } else {
+        $(`.errorPassword`).removeClass('show')
+        $(`#inputPassword`).removeClass('error')
+        cpfValid = true
+    }
+    return cpfValid
+}
+
+function login (email, password){
     switch (email) {
         case 'caio@gmail.com':
             sessionStorage.setItem('user', user1)
@@ -35,5 +40,10 @@ const login = (email, password) => {
     }
     location.href = 'home.html'
 }
-$('#loginBtn').on('click', validate);
+$('#loginBtn').on('click', function () {
+    validateFields($(`#inputPassword`).val(), $(`#inputEmail`).val())
+})
 
+function validateFields(password, email) {
+    (validateEmail(email) && validatePassword(password)) ? login(email, password) : ''
+}
