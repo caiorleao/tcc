@@ -281,7 +281,7 @@ body {
                             max-height: 62.36px;
                             border-radius: 18px;
                             padding: 15px 42px;
-                            background-color: $color-black;
+                            background-color: $color-gray;
                             text-decoration: none;
                             float: right;
                             &:hover {
@@ -318,6 +318,7 @@ body {
                         border-radius: 24px;
                         &.contentCard-fullsize {
                             width: 1372px;
+                            height: max-content;
                         }
                         &.contentCard-three {
                             width: 328px;
@@ -356,7 +357,7 @@ body {
                         }
                         .contentCard-body {
                             padding: 32px 52px;
-                            height: 500px;
+                            height: max-content;
                             &.cadastro-body {
                                 padding: 5px 16px;
                                 height: 425px;

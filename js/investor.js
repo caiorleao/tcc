@@ -19,16 +19,25 @@ $('#continue3').on('click', function () {
         console.log('total por vez', total)
     });
     console.log('total', total)
-
+    let perfil 
     if (total == 9) {
-        alert('Muito conservador')
+        perfil = 'Muito conservador'
     } else if (total > 9 && total <= 18) {
-        alert('Conservador')
+        perfil = 'Conservador'
     } else if (total > 18 && total <= 27) {
-        alert('Agressivo')
+        perfil = 'Agressivo' 
     } else if (total > 27 && total <= 36) {
-        alert('Muito Agressivo')
+        perfil = 'Muito agressivo'
     }
+    var settings = {
+        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/usuarios/alterar/"+JSON.parse(localStorage.getItem('user')).id+"/"+perfil,
+        "method": "PATCH",
+        "timeout": 0,
+      };
+      
+      $.ajax(settings).done(function (response) {
+        location.href = "http://127.0.0.1:5500/html/home.html"
+      });
 })
 $('.inputButton').on('click', function () {
     let progressBar = $(this).attr('data-val')

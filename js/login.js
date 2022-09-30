@@ -14,36 +14,26 @@ function validateEmail(email) {
     return emailValid
 }
 
-function validatePassword(password) {
-    let re = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/
-    if (!re.test(password) || password !='') {
-        $(`.errorPassword`).addClass('show')
-        $(`#inputPassword`).addClass('error')
-        cpfValid = false
-    } else {
-        $(`.errorPassword`).removeClass('show')
-        $(`#inputPassword`).removeClass('error')
-        cpfValid = true
-    }
-    return cpfValid
-}
+function login(email, password) {
+    var settings = {
+        "url": "https://rest-api-startupone.herokuapp.com/usuarios/login/"+email+"/"+password,
+        "method": "GET",
+        "timeout": 0,
+    };
 
-function login (email, password){
-    switch (email) {
-        case 'caio@gmail.com':
-            sessionStorage.setItem('user', user1)
-            console.log('logado')
-        case 'felipe@gmail.com':
-            sessionStorage.setItem('user', user1)
-        case 'thais@gmail.com':
-            sessionStorage.setItem('user', user1)
-    }
-    location.href = 'home.html'
+    $.ajax(settings).done(function (data) {
+        if (data.response.usuario.length >= 0) {
+            localStorage.setItem('user', JSON.stringify(data))
+            location.href = "http://127.0.0.1:5500/html/home.html"
+        }
+    });
+
+
 }
 $('#loginBtn').on('click', function () {
-    validateFields($(`#inputPassword`).val(), $(`#inputEmail`).val())
+    validateFields($(`#inputEmail`).val(), $(`#inputPassword`).val())
 })
 
 function validateFields(password, email) {
-    (validateEmail(email) && validatePassword(password)) ? login(email, password) : ''
+    (validateEmail(email) && $('#inputPassword').val() != '') ? login(email, password) : $('#inputPassword').addClass('error')
 }
