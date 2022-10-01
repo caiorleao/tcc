@@ -1,7 +1,7 @@
 import { $ } from "dom7";
 
 let selectedMeta
-//loadUserData(JSON.parse(localStorage.getItem('user')))
+loadUserData(JSON.parse(localStorage.getItem('user')))
 
 function loadUserData(userData) {
     var settings = {
@@ -12,6 +12,7 @@ function loadUserData(userData) {
 
     $.ajax(settings).done(function (data) {
         if (data.response.usuario.length >= 0) {
+            localStorage.setItem('user', data.response.usuario)
             user = data.response.usuario[0]
             localStorage.setItem('user', JSON.stringify(data.response.usuario[0]))
             $(".user-name").text(user.nome)

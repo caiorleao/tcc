@@ -18,16 +18,16 @@
 <body>
     <nav class="navbar navbar-expand navbar-dark" aria-label="Second navbar example">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="../img/logo.svg" alt=""></a>
+            <a class="navbar-brand" href="home.html"><img src="../img/logo.svg" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02"
                 aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarsExample02">
                 <ul class="navbar-nav me-auto">
-                    <li><a class="header-links text-yellow" href="teste">Extrato</a></li>
-                    <li><a class="header-links text-gray" href="teste">Metas</a></li>
-                    <li><a class="header-links text-gray" href="teste">Usuários</a></li>
+                    <li><a class="header-links text-yellow" href="extrato.html">Extrato</a></li>
+                    <li><a class="header-links text-gray" href="metas.html">Metas</a></li>
+                    <li><a class="header-links text-gray" href="perfil.html">Perfil</a></li>
                 </ul>
             </div>
         </div>
@@ -35,8 +35,7 @@
     <div class="content">
         <div class="mb-4 user-data text-white">
             <div class="container-fluid user-info">
-                <h1 class="user-greeting">Olá, <span class="text-yellow"></span>! </h1>
-                <p class="user-notification"></p>
+                <h1 class="user-greeting">Olá, <span class="text-yellow user-name"></span>! </h1>
             </div>
             <h2 class="accounts-total text-yellow"></h2>
         </div>
@@ -68,7 +67,9 @@
                                     </select>
                                     <label class="inputLabel" for="title">Data do lançamento</label>
                                     <input class="inputField" type="text" id="datepicker">
+                                    <p class="error_message errroInOut font-size-12">Insira informações válidas</p>
                                     <button class="inputButton inoutButton" id="addInOut">Adicionar</button>
+
                                 </div>
                                 <div class="chart-section">
                                     <div id="chart1" class="feature text-black">
@@ -128,6 +129,7 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-loading-overlay@1.1.0/dist/js-loading-overlay.min.js"></script>
     <script type="module" src="../js/extrato.js"></script>
 </body>
 

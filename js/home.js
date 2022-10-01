@@ -1,5 +1,19 @@
 // import Swiper JS
-
+var configs = {
+    'overlayBackgroundColor': '#1e1e1e',
+    'overlayOpacity': 0.3,
+    'spinnerIcon': 'ball-spin',
+    'spinnerColor': '#eac43d',
+    'spinnerSize': '2x',
+    'overlayIDName': 'overlay',
+    'spinnerIDName': 'spinner',
+    'offsetY': 0,
+    'offsetX': 0,
+    'lockScroll': false,
+    'containerID': null,
+};
+//JsLoadingOverlay.show(configs);
+//JsLoadingOverlay.hide();
 import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js';
 var PriceFormatter = new Intl.NumberFormat("pt-br", {
     style: "currency",
@@ -8,6 +22,7 @@ var PriceFormatter = new Intl.NumberFormat("pt-br", {
 loadUserData(JSON.parse(localStorage.getItem('user')))
 
 function loadUserData(userData) {
+    JsLoadingOverlay.show(configs)
     $(".user-name").text(userData.nome)
     loadAccounts(userData)
     loadExtract(userData)
@@ -26,20 +41,21 @@ function loadAccounts(userData) {
         $(".accounts-total").text(PriceFormatter.format(saldo))
     } else {
         var settings = {
-            "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/contas/usuariocontas/" + userData.id,
+            "url": "https://rest-api-startupone.herokuapp.com/contas/usuariocontas/" + userData.id,
             "method": "GET",
             "timeout": 0,
         };
-
+        
         $.ajax(settings).done(function (data) {
             localStorage.setItem('accounts', JSON.stringify(data))
             let saldo = 0,
-                accountTokens = []
+            accountTokens = []
             data.response.forEach(account => {
                 saldo += account.saldo
                 accountTokens.push({ 'name': account.banco, 'token': account.token })
             });
             $(".accounts-total").text(PriceFormatter.format(saldo))
+            localStorage.setItem('saldo', saldo)
         });
     }
 }
@@ -55,7 +71,11 @@ function loadExtract(userData) {
             investimento = 0,
             totalGasto = 0,
             valor = 0,
-            sortedData = JSON.parse(localStorage.getItem('extracts')).response.sort((a, b) => new Date(a.dt) - new Date(b.dt))
+            sortedData = JSON.parse(localStorage.getItem('extracts')).response.sort(function (a, b) {
+                var aa = a.dt.split('/').reverse().join(),
+                    bb = b.dt.split('/').reverse().join();
+                return aa > bb ? -1 : (aa < bb ? 1 : 0);
+            });
         sortedData.forEach(extract => {
             if (extract.valor < 0) {
                 valor = (extract.valor) * (-1)
@@ -72,22 +92,16 @@ function loadExtract(userData) {
                     default:
                         break;
                 }
-                switch (extract.categoria) {
-                    case 'Alimentação':
-                        alimentacao += valor
-                        break;
-                    case 'Transporte':
-                        transporte += valor
-                        break;
-                    case 'Lazer':
-                        lazer += valor
-                        break;
-                    case 'Investimento':
-                        investimento += valor
-                        break;
-                    default:
-                        break;
+                if (extract.categoria == 'Alimentação') {
+                    alimentacao += valor
+                } else if (extract.categoria == 'Transporte') {
+                    transporte += valor
+                } else if (extract.categoria == 'Lazer') {
+                    lazer += valor
+                } else if (extract.categoria.includes('Meta')) {
+                    investimento += valor
                 }
+
                 totalGasto += valor
             }
 
@@ -179,7 +193,7 @@ function loadExtract(userData) {
         chart1.render();
     } else {
         var settings = {
-            "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/extratos/carregar/" + userData.id,
+            "url": "https://rest-api-startupone.herokuapp.com/extratos/carregar/" + userData.id,
             "method": "GET",
             "timeout": 0,
         };
@@ -195,7 +209,11 @@ function loadExtract(userData) {
                 investimento = 0,
                 totalGasto = 0,
                 valor = 0,
-                sortedData = data.response.sort((a, b) => new Date(a.dt) - new Date(b.dt))
+                sortedData = data.response.sort(function (a, b) {
+                    var aa = a.dt.split('/').reverse().join(),
+                        bb = b.dt.split('/').reverse().join();
+                    return aa > bb ? -1 : (aa < bb ? 1 : 0);
+                });
             sortedData.forEach(extract => {
                 if (extract.valor < 0) {
                     valor = (extract.valor) * (-1)
@@ -212,25 +230,17 @@ function loadExtract(userData) {
                         default:
                             break;
                     }
-                    switch (extract.categoria) {
-                        case 'Alimentação':
-                            alimentacao += valor
-                            break;
-                        case 'Transporte':
-                            transporte += valor
-                            break;
-                        case 'Lazer':
-                            lazer += valor
-                            break;
-                        case 'Investimento':
-                            investimento += valor
-                            break;
-                        default:
-                            break;
+                    if (extract.categoria == 'Alimentação') {
+                        alimentacao += valor
+                    } else if (extract.categoria == 'Transporte') {
+                        transporte += valor
+                    } else if (extract.categoria == 'Lazer') {
+                        lazer += valor
+                    } else if (extract.categoria.includes('Meta')) {
+                        investimento += valor
                     }
                     totalGasto += valor
                 }
-
             });
 
             let banks = []
@@ -307,7 +317,7 @@ function loadExtract(userData) {
             //DONU
             var options1 = {
                 series: [percentage(alimentacao, totalGasto), percentage(transporte, totalGasto), percentage(lazer, totalGasto), percentage(investimento, totalGasto)],
-                labels: ['Alimentação', 'Transporte', 'Lazer', "Investimento"],
+                labels: ['Alimentação', 'Transporte', 'Lazer', "Metas"],
                 colors: ['#eac43d', '#2a5c99', '#001b48', '#242e38'],
                 foreColor: '#ffffff',
                 chart: {
@@ -369,13 +379,13 @@ function loadGoals(user) {
                           <span class="goalDate data text-gray-secondary">${goal.recorrencia} - ${goal.dt_lancamento}</span>
                       </div>
                       <div class="goalValues">
-                          <span class="goalCurrentValue text-gray-secondary">${PriceFormatter.format(goal.vl_atual)}</span>
-                          <span class="goalTotalValue text-yellow">/${PriceFormatter.format(goal.vl_total)}</span>
-                          <span class="goalPercentage text-yellow">- ${Math.round(porcentagem)}%</span>
+                      <span class="goalCurrentValue text-gray-secondary">${goal.vl_atual < 0 ? PriceFormatter.format(0) : PriceFormatter.format(goal.vl_atual)}</span>
+                      <span class="goalTotalValue text-yellow">/${PriceFormatter.format(goal.vl_total)}</span>
+                          <span class="goalPercentage text-yellow">- ${goal.vl_atual < 0 ? 0 : Math.round(porcentagem)}%</span>
                       </div>
                   </div>
                   <div class="progress" id="${goal.titulo}">
-                      <div class="progress-bar" role="progressbar" style="width: ${porcentagem}%"
+                      <div class="progress-bar" role="progressbar" style="width: ${goal.vl_atual < 0 ? 0 : porcentagem}%"
                           aria-valuenow="${porcentagem}" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
               </div>
@@ -383,7 +393,7 @@ function loadGoals(user) {
         })
     } else {
         var settings = {
-            "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/metas/carregar/" + user.id,
+            "url": "https://rest-api-startupone.herokuapp.com/metas/carregar/" + user.id,
             "method": "GET",
             "timeout": 0,
         };
@@ -402,18 +412,20 @@ function loadGoals(user) {
                               <span class="goalDate data text-gray-secondary">${goal.recorrencia} - ${goal.dt_lancamento}</span>
                           </div>
                           <div class="goalValues">
-                              <span class="goalCurrentValue text-gray-secondary">${PriceFormatter.format(goal.vl_atual)}</span>
+                              <span class="goalCurrentValue text-gray-secondary">${goal.vl_atual < 0 ? PriceFormatter.format(0) : PriceFormatter.format(goal.vl_atual)}</span>
                               <span class="goalTotalValue text-yellow">/${PriceFormatter.format(goal.vl_total)}</span>
-                              <span class="goalPercentage text-yellow">- ${Math.round(porcentagem)}%</span>
+                              <span class="goalPercentage text-yellow">- ${goal.vl_atual < 0 ? 0 : Math.round(porcentagem)}%</span>
                           </div>
                       </div>
                       <div class="progress" id="${goal.titulo}">
-                          <div class="progress-bar" role="progressbar" style="width: ${porcentagem}%"
+                          <div class="progress-bar" role="progressbar" style="width: ${goal.vl_atual < 0 ? 0 : porcentagem}%"
                               aria-valuenow="${porcentagem}" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                   </div>
                   `)
             })
+            JsLoadingOverlay.hide()
+
         });
     }
 

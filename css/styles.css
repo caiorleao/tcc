@@ -34,6 +34,10 @@ body {
   background-color: #0b0b0b;
   font-family: "Karla";
 }
+body .font-size-12 {
+  font-size: 12px !important;
+  margin: 8px 0 0 0 !important;
+}
 body .loginLogo {
   width: -webkit-max-content;
   width: -moz-max-content;
@@ -169,7 +173,9 @@ body .user-data {
   border-bottom: 1px solid #4f4e4c;
 }
 body .user-data .user-info {
-  width: 410px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
   height: 120px;
   margin: 20px 24px;
   background-color: #1b1b1b;
