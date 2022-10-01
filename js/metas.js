@@ -6,7 +6,7 @@ loadUserData(JSON.parse(localStorage.getItem('user')))
 
 function loadUserData(userData) {
     var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/usuarios/pesquisar/" + userData.id,
+        "url": "https://rest-api-startupone.herokuapp.com/usuarios/pesquisar/" + userData.id,
         "method": "GET",
         "timeout": 0,
     };
@@ -23,7 +23,7 @@ function loadUserData(userData) {
 
 function loadAccounts(userData) {
     var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/contas/usuariocontas/" + userData.id,
+        "url": "https://rest-api-startupone.herokuapp.com/contas/usuariocontas/" + userData.id,
         "method": "GET",
         "timeout": 0,
     };
@@ -117,9 +117,11 @@ $(document).on('input', '#value', function () {
     let value = $(this).val()
     value > 0 ? $('#valuePrice').removeClass('text-red').addClass('text-green') : $('#valuePrice').removeClass('text-green').addClass('text-red')
     $('#valuePrice').html('R$' + $(this).val() + ',00');
+    $('#inicitialValue').attr('max', value)
+    $('#inicitialValue').trigger('input')
 });
 $(document).on('input', '#inicitialValue', function () {
-    let value = $(this).val()
+    let value = $(this).val()   
     value > 0 ? $('#initialValuePrice').removeClass('text-red').addClass('text-green') : $('#initialValuePrice').removeClass('text-green').addClass('text-red')
     $('#initialValuePrice').html('R$' + $(this).val() + ',00');
 });

@@ -8,40 +8,58 @@ let selectedMeta
 loadUserData(JSON.parse(localStorage.getItem('user')))
 
 function loadUserData(userData) {
-    var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/usuarios/pesquisar/" + userData.id,
-        "method": "GET",
-        "timeout": 0,
-    };
-
-    $.ajax(settings).done(function (data) {
-        if (data.response.usuario.length >= 0) {
-            localStorage.setItem('user', JSON.stringify(data.response.usuario[0]))
-            $(".user-name").text(data.response.usuario[0].nome)
-            loadAccounts(data.response.usuario[0])
-            loadExtract(userData)
-            loadGoals(userData)
-        }
-    });
+    if (localStorage.getItem('user')) {
+        $(".user-name").text(JSON.parse(localStorage.getItem('accounts')))
+        loadAccounts(JSON.parse(localStorage.getItem('accounts')))
+        loadExtract(userData)
+        loadGoals(userData)
+    }else{
+        var settings = {
+            "url": "https://rest-api-startupone.herokuapp.com/usuarios/pesquisar/" + userData.id,
+            "method": "GET",
+            "timeout": 0,
+        };
+    
+        $.ajax(settings).done(function (data) {
+            if (data.response.usuario.length >= 0) {
+                localStorage.setItem('user', JSON.stringify(data.response.usuario[0]))
+                $(".user-name").text(data.response.usuario[0].nome)
+                loadAccounts(data.response.usuario[0])
+                loadExtract(userData)
+                loadGoals(userData)
+            }
+        });
+    }
 }
 
 function loadAccounts(userData) {
-    var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/contas/usuariocontas/" + userData.id,
-        "method": "GET",
-        "timeout": 0,
-    };
-
-    $.ajax(settings).done(function (data) {
+    if (localStorage.getItem('accounts')) {
         let saldo = 0,
             accountTokens = []
-        data.response.forEach(account => {
+        JSON.parse(localStorage.getItem('accounts')).response.forEach(account => {
             saldo += account.saldo
             accountTokens.push({ 'name': account.banco, 'token': account.token })
             $('#account').append(`<option value="${account.idconta}">${account.banco}</option>`)
         });
         $(".accounts-total").text(PriceFormatter.format(saldo))
-    });
+    } else {
+        var settings = {
+            "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/contas/usuariocontas/" + userData.id,
+            "method": "GET",
+            "timeout": 0,
+        };
+
+        $.ajax(settings).done(function (data) {
+            let saldo = 0,
+                accountTokens = []
+            data.response.forEach(account => {
+                saldo += account.saldo
+                accountTokens.push({ 'name': account.banco, 'token': account.token })
+                $('#account').append(`<option value="${account.idconta}">${account.banco}</option>`)
+            });
+            $(".accounts-total").text(PriceFormatter.format(saldo))
+        });
+    }
 }
 
 function loadGoals(user) {
@@ -51,7 +69,7 @@ function loadGoals(user) {
         })
     } else {
         var settings = {
-            "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/metas/carregar/" + user.id,
+            "url": "https://rest-api-startupone.herokuapp.com/metas/carregar/" + user.id,
             "method": "GET",
             "timeout": 0,
         };
@@ -67,12 +85,7 @@ function loadGoals(user) {
 }
 
 function loadExtract(user) {
-    var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/extratos/carregar/" + user.id,
-        "method": "GET",
-        "timeout": 0,
-    };
-    $.ajax(settings).done(function (data) {
+    if (localStorage.getItem('extracts')) {
         let santander = { name: 'Santander', data: [] },
             xpInvestimentos = { name: 'XP Investimentos', data: [] },
             bradesco = { name: 'Bradesco', data: [] },
@@ -82,7 +95,7 @@ function loadExtract(user) {
             metas = 0,
             totalGasto = 0,
             valor = 0,
-            sortedData = data.response.sort((a, b) => new Date(b.dt) - new Date(a.dt))
+            sortedData = JSON.parse(localStorage.getItem('extracts')).response.sort((a, b) => new Date(b.dt) - new Date(a.dt))
         sortedData.forEach(extract => {
             if (extract.valor < 0) {
                 valor = (extract.valor) * (-1)
@@ -118,18 +131,18 @@ function loadExtract(user) {
                 totalGasto += valor
             }
             $('.extracts').append(`
-                <div class="extract-info">
-                    <div class="extractData">
-                        <span class="extractTitle data text-yellow">${extract.titulo}</span>
-                        <span class="extractCategory data text-blue-bright">${extract.categoria}</span>
-                        <span class="extractDate data text-gray-secondary">
-                        <span class="extractBank">${extract.banco}</span> - ${extract.dt}</span>
-                    </div>
-                    <div class="extractValues">
-                        <span class="extractPercentage ${extract.valor >= 0 ? 'text-green' : 'text-red'}">${PriceFormatter.format(extract.valor)}</span>
-                    </div>
+            <div class="extract-info">
+                <div class="extractData">
+                    <span class="extractTitle data text-yellow">${extract.titulo}</span>
+                    <span class="extractCategory data text-blue-bright">${extract.categoria}</span>
+                    <span class="extractDate data text-gray-secondary">
+                    <span class="extractBank">${extract.banco}</span> - ${extract.dt}</span>
                 </div>
-              `)
+                <div class="extractValues">
+                    <span class="extractPercentage ${extract.valor >= 0 ? 'text-green' : 'text-red'}">${PriceFormatter.format(extract.valor)}</span>
+                </div>
+            </div>
+          `)
         });
 
         let banks = []
@@ -150,7 +163,92 @@ function loadExtract(user) {
         };
         var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
         chart1.render();
-    });
+    } else {
+        var settings = {
+            "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/extratos/carregar/" + user.id,
+            "method": "GET",
+            "timeout": 0,
+        };
+        $.ajax(settings).done(function (data) {
+            let santander = { name: 'Santander', data: [] },
+                xpInvestimentos = { name: 'XP Investimentos', data: [] },
+                bradesco = { name: 'Bradesco', data: [] },
+                alimentacao = 0,
+                transporte = 0,
+                lazer = 0,
+                metas = 0,
+                totalGasto = 0,
+                valor = 0,
+                sortedData = data.response.sort((a, b) => new Date(b.dt) - new Date(a.dt))
+            sortedData.forEach(extract => {
+                if (extract.valor < 0) {
+                    valor = (extract.valor) * (-1)
+                    switch (extract.banco) {
+                        case 'Santander':
+                            santander.data.push(valor)
+                            break;
+                        case 'XP Investimentos':
+                            xpInvestimentos.data.push(valor)
+                            break;
+                        case 'Bradesco':
+                            bradesco.data.push(valor)
+                            break;
+                        default:
+                            break;
+                    }
+                    switch (extract.categoria) {
+                        case 'Alimentação':
+                            alimentacao += valor
+                            break;
+                        case 'Transporte':
+                            transporte += valor
+                            break;
+                        case 'Lazer':
+                            lazer += valor
+                            break;
+                        case extract.categoria.includes('Meta'):
+                            metas += valor
+                            break;
+                        default:
+                            break;
+                    }
+                    totalGasto += valor
+                }
+                $('.extracts').append(`
+                    <div class="extract-info">
+                        <div class="extractData">
+                            <span class="extractTitle data text-yellow">${extract.titulo}</span>
+                            <span class="extractCategory data text-blue-bright">${extract.categoria}</span>
+                            <span class="extractDate data text-gray-secondary">
+                            <span class="extractBank">${extract.banco}</span> - ${extract.dt}</span>
+                        </div>
+                        <div class="extractValues">
+                            <span class="extractPercentage ${extract.valor >= 0 ? 'text-green' : 'text-red'}">${PriceFormatter.format(extract.valor)}</span>
+                        </div>
+                    </div>
+                  `)
+            });
+
+            let banks = []
+            santander.data.length > 0 ? banks.push(santander) : ''
+            xpInvestimentos.data.length > 0 ? banks.push(xpInvestimentos) : ''
+            bradesco.data.length > 0 ? banks.push(bradesco) : ''
+
+            //DONU
+            var options1 = {
+                series: [percentage(alimentacao, totalGasto), percentage(transporte, totalGasto), percentage(lazer, totalGasto), percentage(metas, totalGasto)],
+                labels: ['Alimentação', 'Transporte', 'Lazer', "Metas"],
+                colors: ['#eac43d', '#2a5c99', '#001b48', '#242e38'],
+                foreColor: '#ffffff',
+                chart: {
+                    type: 'donut',
+                },
+                width: '100%'
+            };
+            var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+            chart1.render();
+        });
+    }
 
 
 }
@@ -187,38 +285,39 @@ $('#addInOut').on('click', function () {
 function updateSaldo() {
 
     var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/contas/alterarSaldo/" + $('#account').val() + "/+" + $('#value').val(),
+        "url": "https://rest-api-startupone.herokuapp.com/contas/alterarSaldo/" + $('#account').val() + "/+" + $('#value').val(),
         "method": "PATCH",
         "timeout": 0,
     };
 
     $.ajax(settings).done(function (data) {
         if (data.message = "Saldo alterado com sucesso!!") {
-            if(selectedMeta){
+            if (selectedMeta) {
                 updateMeta()
-            }else{
+            } else {
                 location.reload()
             }
         }
     });
 }
 
-function updateMeta(){
-    let metaId = $('#category option:selected').attr('data-id') 
+function updateMeta() {
+    let metaId = $('#category option:selected').attr('data-id')
     let newValue = parseInt($('#category option:selected').attr('data-current')) + parseInt($('#value').val())
     var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/metas/alterarValor/"+metaId+"/"+newValue,
+        "url": "https://rest-api-startupone.herokuapp.com/metas/alterarValor/" + metaId + "/" + newValue,
         "method": "PATCH",
         "timeout": 0,
-      };
-      
-      $.ajax(settings).done(function (response) {
+    };
+
+    $.ajax(settings).done(function (response) {
         location.reload()
-      });
+    });
 }
 
 $(document).on('input', '#value', function () {
     let value = $(this).val()
+    
     value > 0 ? $('#valuePrice').removeClass('text-red').addClass('text-green') : $('#valuePrice').removeClass('text-green').addClass('text-red')
     $('#valuePrice').html('R$' + $(this).val() + ',00');
 });

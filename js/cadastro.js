@@ -76,7 +76,7 @@ $("#addBankAccount").on("click", function () {
 function validateBank(token) {
     JsLoadingOverlay.show(configs);
     var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/contas/pesquisar/" + token,
+        "url": "https://rest-api-startupone.herokuapp.com/contas/pesquisar/" + token,
         "method": "GET",
         "timeout": 0,
     };
@@ -181,7 +181,7 @@ function validateCPF(cpf) {
 function postUser(user) {
     JsLoadingOverlay.show(configs);
     var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/usuarios/cadastro",
+        "url": "https://rest-api-startupone.herokuapp.com/usuarios/cadastro",
         "method": "POST",
         "timeout": 0,
         "headers": {
@@ -199,7 +199,7 @@ function postUser(user) {
 
 function login(email, senha) {
     var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/usuarios/login/ronaldo@gmail.com/R1234",
+        "url": "https://rest-api-startupone.herokuapp.com/usuarios/login/ronaldo@gmail.com/R1234",
         "method": "GET",
         "timeout": 0,
     };
@@ -219,7 +219,7 @@ function login(email, senha) {
 
 function linkBank() {
     var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/contas/alterar/1/1",
+        "url": "https://rest-api-startupone.herokuapp.com/contas/alterar/1/1",
         "method": "PATCH",
         "timeout": 0,
     };

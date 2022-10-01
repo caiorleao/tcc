@@ -30,7 +30,7 @@ $('#continue3').on('click', function () {
         perfil = 'Muito agressivo'
     }
     var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/usuarios/alterar/"+JSON.parse(localStorage.getItem('user')).id+"/"+perfil,
+        "url": "https://rest-api-startupone.herokuapp.com/usuarios/alterar/"+JSON.parse(localStorage.getItem('user')).id+"/"+perfil,
         "method": "PATCH",
         "timeout": 0,
       };

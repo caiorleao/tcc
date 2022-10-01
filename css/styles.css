@@ -468,9 +468,97 @@ body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutFo
 body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.goalsForm .half-form {
   width: 50%;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm .half-form .first,
-body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.goalsForm .half-form .first {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm .half-form.first,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.goalsForm .half-form.first {
   margin: 0 10px 0 0;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm .half-form .profileImage .img,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.goalsForm .half-form .profileImage .img {
+  width: 300px;
+  height: 300px;
+  background-color: #4f4e4c;
+  border-radius: 100%;
+  margin: 0 auto;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm .half-form .profileImage .label,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.goalsForm .half-form .profileImage .label {
+  margin: 0 auto;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 37px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm .half-form .user,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.goalsForm .half-form .user {
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  display: inline-block;
+  width: 100%;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm .half-form .user .head,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.goalsForm .half-form .user .head {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 29px;
+  line-height: 28px;
+  border-bottom: 1px solid #858585;
+  margin: 10px 0 10px 0;
+  padding-bottom: 8px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm .half-form .user .colum,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.goalsForm .half-form .user .colum {
+  width: 50%;
+  float: left;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm .half-form .user .colum .label,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.goalsForm .half-form .user .colum .label {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  color: #ffffff;
+  display: flex;
+  margin: 0 24px 0 0;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm .half-form .user .colum .value,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.goalsForm .half-form .user .colum .value {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #858585;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm .half-form .user .addBanks .head,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.goalsForm .half-form .user .addBanks .head {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 28px;
+  border-bottom: 1px solid #858585;
+  margin: 10px 0 10px 0;
+  padding-bottom: 8px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm .half-form .user .addBanks .banksTitles,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.goalsForm .half-form .user .addBanks .banksTitles {
+  width: 100%;
+  font-style: normal;
+  text-align: center;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm .half-form .user .addBanks .banks,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.goalsForm .half-form .user .addBanks .banks {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  color: #858585;
 }
 body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions,
 body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .questions {
@@ -610,7 +698,8 @@ body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutFo
 body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .inputField-cadastro.error {
   border: 1px solid #d71919;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm #valuePrice, body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm #initialValuePrice,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm #valuePrice,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm #initialValuePrice,
 body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro #valuePrice,
 body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro #initialValuePrice {
   font-style: normal;
