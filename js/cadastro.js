@@ -138,13 +138,15 @@ function registerUser() {
 function isEmpty() {
     let isEmpty = false
     $('.inputField-cadastro').each(function (index, field) {
-        if ($(field).val() == "" && $(field).attr('id') != 'inputToken') {
-            $(`.error${$(field).attr('id').replace("input", "")}`).addClass('show')
-            $(`#${$(field).attr('id')}`).addClass('error')
-            isEmpty = true
-        } else {
-            $(`.error${$(field).attr('id').replace("input", "")}`).removeClass('show')
-            $(`#${$(field).attr('id')}`).removeClass('error')
+        if($(field).attr('id') != 'inputComplemento'){
+            if ($(field).val() == "" && $(field).attr('id') != 'inputToken') {
+                $(`.error${$(field).attr('id').replace("input", "")}`).addClass('show')
+                $(`#${$(field).attr('id')}`).addClass('error')
+                isEmpty = true
+            } else {
+                $(`.error${$(field).attr('id').replace("input", "")}`).removeClass('show')
+                $(`#${$(field).attr('id')}`).removeClass('error')
+            }
         }
     });
     return isEmpty

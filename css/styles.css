@@ -117,6 +117,12 @@ body .inputButton:hover {
   background-color: #c98c17;
   color: #161616;
 }
+body .inputButton.inoutButton {
+  width: 356px;
+}
+body .inputButton.goalButton {
+  width: 356px;
+}
 body .inputButtonForm {
   width: 200px;
   margin: 22px 50px;
@@ -287,6 +293,10 @@ body .dashboard .container > .row .cards {
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
 }
+body .dashboard .container > .row .cards.goalsCards {
+  grid-template-columns: 1fr;
+  margin: 0px 140px;
+}
 body .dashboard .container > .row .cards.cadastro {
   margin: 36px auto;
   display: grid;
@@ -310,6 +320,17 @@ body .dashboard .container > .row .cards .contentCard {
 }
 body .dashboard .container > .row .cards .contentCard.contentCard-fullsize {
   width: 1372px;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+body .dashboard .container > .row .cards .contentCard.contentCard-fullsize.goalsCards {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+body .dashboard .container > .row .cards .contentCard.goalsCard {
+  width: 1077px;
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
@@ -440,8 +461,16 @@ body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastr
 }
 body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm,
 body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.goalsForm {
-  width: 49%;
-  border: 1px solid white;
+  width: 100%;
+  display: inline-flex;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm .half-form,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.goalsForm .half-form {
+  width: 50%;
+}
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm.goalsForm .half-form .first,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro.goalsForm .half-form .first {
+  margin: 0 10px 0 0;
 }
 body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm .questions,
 body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .questions {
@@ -581,8 +610,9 @@ body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutFo
 body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro .inputField-cadastro.error {
   border: 1px solid #d71919;
 }
-body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm #valuePrice,
-body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro #valuePrice {
+body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm #valuePrice, body .dashboard .container > .row .cards .contentCard .contentCard-body .inOutForm #initialValuePrice,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro #valuePrice,
+body .dashboard .container > .row .cards .contentCard .contentCard-body .cadastro #initialValuePrice {
   font-style: normal;
   font-weight: 400;
   font-size: 24px;

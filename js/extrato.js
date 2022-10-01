@@ -1,10 +1,13 @@
+import { $ } from "dom7";
+
 $("#datepicker").datepicker();
 
 var PriceFormatter = new Intl.NumberFormat("pt-br", {
     style: "currency",
     currency: "BRL",
 });
-loadUserData(JSON.parse(localStorage.getItem('user')))
+let selectedMeta
+//loadUserData(JSON.parse(localStorage.getItem('user')))
 
 function loadUserData(userData) {
     var settings = {
@@ -17,9 +20,51 @@ function loadUserData(userData) {
         if (data.response.usuario.length >= 0) {
             localStorage.setItem('user', JSON.stringify(data.response.usuario[0]))
             $(".user-name").text(data.response.usuario[0].nome)
+            loadAccounts(data.response.usuario[0])
             loadExtract(userData)
         }
     });
+}
+
+function loadAccounts(userData) {
+    var settings = {
+        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/contas/usuariocontas/" + userData.id,
+        "method": "GET",
+        "timeout": 0,
+    };
+
+    $.ajax(settings).done(function (data) {
+        let saldo = 0,
+            accountTokens = []
+        data.response.forEach(account => {
+            saldo += account.saldo
+            accountTokens.push({ 'name': account.banco, 'token': account.token })
+            $('#account').append(`<option value="${account.idconta}">${account.banco}</option>`)
+        });
+        $(".accounts-total").text(PriceFormatter.format(saldo))
+    });
+}
+
+function loadGoals(user) {
+    if (localStorage.getItem('goals')) {
+        JSON.parse(localStorage.getItem('goals')).response.forEach(goal => {
+            $('#account').append(`<option value="${goal.idmeta}" data-current="${goal.vl_atual}">Meta - ${goal.titulo}</option>`)
+        })
+    } else {
+        var settings = {
+            "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/metas/carregar/" + user.id,
+            "method": "GET",
+            "timeout": 0,
+        };
+
+        $.ajax(settings).done(function (data) {
+            localStorage.setItem('goals', JSON.stringify(data))
+            data.response.forEach(goal => {
+                $('#account').append(`<option value="${goal.idmeta}" data-current="${goal.vl_atual}">Meta - ${goal.titulo}</option>`)
+            })
+        });
+    }
+
 }
 
 function loadExtract(user) {
@@ -82,7 +127,7 @@ function loadExtract(user) {
                         <span class="extractBank">${extract.banco}</span> - ${extract.dt}</span>
                     </div>
                     <div class="extractValues">
-                        <span class="extractPercentage ${extract.valor >= 0 ? 'text-green': 'text-red'}">${PriceFormatter.format(extract.valor)}</span>
+                        <span class="extractPercentage ${extract.valor >= 0 ? 'text-green' : 'text-red'}">${PriceFormatter.format(extract.valor)}</span>
                     </div>
                 </div>
               `)
@@ -109,6 +154,68 @@ function loadExtract(user) {
     });
 
 
+}
+
+$('#addInOut').on('click', function () {
+    if ($('#title').val() != '' && $('#value').val() != '' && $('#datepicker').val() != '' && $('#account').val()) {
+        let lancamento = {
+            "titulo": $('#title').val(),
+            "categoria": $('#category').val(),
+            "valor": $('#value').val(),
+            "data": $('#datepicker').val()
+        }
+        var settings = {
+            "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/extratos/cadastro/" + $('#account').val(),
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify(lancamento),
+        };
+
+        $.ajax(settings).done(function (data) {
+            selectedMeta = $('#category option:selected').text().includes("Meta") ? true : false
+            if (!data.error) {
+                updateSaldo()
+            }
+        });
+    } else {
+
+    }
+})
+
+function updateSaldo() {
+
+    var settings = {
+        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/contas/alterarSaldo/" + $('#account').val() + "/+" + $('#value').val(),
+        "method": "PATCH",
+        "timeout": 0,
+    };
+
+    $.ajax(settings).done(function (data) {
+        if (data.message = "Saldo alterado com sucesso!!") {
+            if(selectedMeta){
+                updateMeta()
+            }else{
+                location.reload()
+            }
+        }
+    });
+}
+
+function updateMeta(){
+    let metaId = $('#category').val()
+    let newValue = parseInt($('#category option:selected').attr('data-current')) + parseInt($('#value').val())
+    var settings = {
+        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/metas/alterarValor/"+metaId+"/"+newValue,
+        "method": "PATCH",
+        "timeout": 0,
+      };
+      
+      $.ajax(settings).done(function (response) {
+        location.reload()
+      });
 }
 
 $(document).on('input', '#value', function () {

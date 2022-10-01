@@ -43,38 +43,46 @@
         <div class="dashboard">
             <div class="container">
                 <div class="row ">
-                    <div class="cards">
-                        <div class="contentCard contentCard-fullsize manualInout">
+                    <div class="cards goalsCards">
+                        <div class="contentCard contentCard-fullsize goalsCard manualInout">
                             <div class="contentCard-header">
                                 <span class="cardHeader-title text-white">Lançamento manual</span>
                             </div>
                             <div class="contentCard-body">
                                 <div class="inOutForm goalsForm text-white">
-                                    <label class="inputLabel" for="title">Titulo</label>
-                                    <input class="inputField" type="text" name="title" id="title">
-                                    <label class="inputLabel sliderLabel" for="value">Valor</label>
-                                    <input class="inputField" type="range" name="value" id="value" value="0" min="-1000"
-                                        max="1000" step="1"><span id="valuePrice" class="text-green">R$ 35,00</span>
-                                    <label class="inputLabel" for="account">Conta utilizada</label>
-                                    <input class="inputField" type="text" id="datepicker">
-                                    <label class="inputLabel" for="category">Categoria</label>
-                                    <select class="inputField" name="category" id="category">
-                                        <option value="santander">Santander</option>
-                                        <option value="nubank">Nubank</option>
-                                        <option value="caixa">Caixa</option>
-                                        <option value="bradesco">Bradesco</option>
-                                    </select>
-                                    <label class="inputLabel" for="title">Titulo</label>
-                                    <input class="inputField" type="text" name="title" id="title">
-                                    <label class="inputLabel" for="account">Conta utilizada</label>
-                                    <select class="inputField" name="account" id="account">
-                                        <option value="123">conta - 123</option>
-                                        <option value="144">conta - 144</option>
-                                        <option value="1235">conta - 1235</option>
-                                        <option value="4123">conta - 4123</option>
-                                    </select>
+                                    <div class="half-form first">
+                                        <label class="inputLabel" for="title">Titulo</label>
+                                        <input class="inputField" type="text" name="title" id="title">
+                                        <label class="inputLabel sliderLabel" for="value">Valor</label>
+                                        <input class="inputField" type="range" name="value" id="value" value="0"
+                                            min="0" max="10000" step="1"><span id="valuePrice" class="text-green">R$
+                                            0,00</span>
+                                        <label class="inputLabel" for="title">Data do lançamento</label>
+                                        <input class="inputField" type="text" id="datepicker">
+                                    </div>
+                                    <div class="half-form">
+                                        <label class="inputLabel" for="category">Categoria</label>
+                                        <select class="inputField" name="category" id="category">
+                                            <option value="Alimentação">Alimentacao</option>
+                                            <option value="Transporte">Tr ion>
+                                            <option value="Lazer">Lazer</option>
+                                            <option value="Investimento">Investimento</option>
+                                        </select>
+                                        <label class="inputLabel sliderLabel" for="inicitialValue">Investimento
+                                            inicial</label>
+                                        <input class="inputField" type="range" name="inicitialValue" id="inicitialValue"
+                                            value="0" min="0" max="10000" step="1"><span id="initialValuePrice"
+                                            class="text-green">R$
+                                            0,00</span>
+                                        <label class="inputLabel sliderLabel" for="recorrencia">Recorrência</label>
+                                        <select class="inputField" name="recorrencia" id="recorrencia">
+                                            <option value="semanal">Semanal</option>
+                                            <option value="quinzenal">Quinzenal</option>
+                                            <option value="mensal">Mensal</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <button class="inputField inputButton" id="addInOut">Adicionar</button>
+                                <button class="inputField inputButton goalButton" id="addInOut">Adicionar</button>
                             </div>
                         </div>
                     </div>
@@ -87,101 +95,6 @@
                             </div>
                             <div class="contentCard-body">
                                 <div class="goals">
-                                    <div class="progressSection">
-                                        <div class="progress-info">
-                                            <div class="goalData">
-                                                <span class="goalTitle data text-yellow">Carro</span>
-                                                <span class="goalCategory data text-blue-bright">Transporte</span>
-                                                <span class="goalDate data text-gray-secondary">Mensal - Dezembro
-                                                    2023</span>
-                                            </div>
-                                            <div class="goalValues">
-                                                <span class="goalCurrentValue text-gray-secondary">R$ 23.000,50</span>
-                                                <span class="goalTotalValue text-yellow">/46.001,00</span>
-                                                <span class="goalPercentage text-yellow">- 50%</span>
-                                            </div>
-                                        </div>
-                                        <div class="progress" id="carro">
-                                            <div class="progress-bar" role="progressbar" style="width: 60%"
-                                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="progressSection">
-                                        <div class="progress-info">
-                                            <div class="goalData">
-                                                <span class="goalTitle data text-yellow">Carro</span>
-                                                <span class="goalCategory data text-blue-bright">Transporte</span>
-                                                <span class="goalDate data text-gray-secondary">Mensal - Dezembro
-                                                    2023</span>
-                                            </div>
-                                            <div class="goalValues">
-                                                <span class="goalCurrentValue text-gray-secondary">R$ 23.000,50</span>
-                                                <span class="goalTotalValue text-yellow">/46.001,00</span>
-                                                <span class="goalPercentage text-yellow">- 50%</span>
-                                            </div>
-                                        </div>
-                                        <div class="progress" id="carro">
-                                            <div class="progress-bar" role="progressbar" style="width: 60%"
-                                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="progressSection">
-                                        <div class="progress-info">
-                                            <div class="goalData">
-                                                <span class="goalTitle data text-yellow">Carro</span>
-                                                <span class="goalCategory data text-blue-bright">Transporte</span>
-                                                <span class="goalDate data text-gray-secondary">Mensal - Dezembro
-                                                    2023</span>
-                                            </div>
-                                            <div class="goalValues">
-                                                <span class="goalCurrentValue text-gray-secondary">R$ 23.000,50</span>
-                                                <span class="goalTotalValue text-yellow">/46.001,00</span>
-                                                <span class="goalPercentage text-yellow">- 50%</span>
-                                            </div>
-                                        </div>
-                                        <div class="progress" id="carro">
-                                            <div class="progress-bar" role="progressbar" style="width: 60%"
-                                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="progressSection">
-                                        <div class="progress-info">
-                                            <div class="goalData">
-                                                <span class="goalTitle data text-yellow">Carro</span>
-                                                <span class="goalCategory data text-blue-bright">Transporte</span>
-                                                <span class="goalDate data text-gray-secondary">Mensal - Dezembro
-                                                    2023</span>
-                                            </div>
-                                            <div class="goalValues">
-                                                <span class="goalCurrentValue text-gray-secondary">R$ 23.000,50</span>
-                                                <span class="goalTotalValue text-yellow">/46.001,00</span>
-                                                <span class="goalPercentage text-yellow">- 50%</span>
-                                            </div>
-                                        </div>
-                                        <div class="progress" id="carro">
-                                            <div class="progress-bar" role="progressbar" style="width: 60%"
-                                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="progressSection">
-                                        <div class="progress-info">
-                                            <div class="goalData">
-                                                <span class="goalTitle data text-yellow">Carro</span>
-                                                <span class="goalCategory data text-blue-bright">Transporte</span>
-                                                <span class="goalDate data text-gray-secondary">Mensal - Dezembro
-                                                    2023</span>
-                                            </div>
-                                            <div class="goalValues">
-                                                <span class="goalCurrentValue text-gray-secondary">R$ 23.000,50</span>
-                                                <span class="goalTotalValue text-yellow">/46.001,00</span>
-                                                <span class="goalPercentage text-yellow">- 50%</span>
-                                            </div>
-                                        </div>
-                                        <div class="progress" id="carro">
-                                            <div class="progress-bar" role="progressbar" style="width: 60%"
-                                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
 
                                 </div>
                             </div>

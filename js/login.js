@@ -16,14 +16,14 @@ function validateEmail(email) {
 
 function login(email, password) {
     var settings = {
-        "url": "https://rest-api-startupone.herokuapp.com/usuarios/login/"+email+"/"+password,
+        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/usuarios/login/"+email+"/"+password,
         "method": "GET",
         "timeout": 0,
     };
 
     $.ajax(settings).done(function (data) {
         if (data.response.usuario.length >= 0) {
-            localStorage.setItem('user', JSON.stringify(data))
+            localStorage.setItem('user', JSON.stringify(data.response.usuario[0]))
             location.href = "http://127.0.0.1:5500/html/home.html"
         }
     });
@@ -34,6 +34,6 @@ $('#loginBtn').on('click', function () {
     validateFields($(`#inputEmail`).val(), $(`#inputPassword`).val())
 })
 
-function validateFields(password, email) {
+function validateFields(email, password) {
     (validateEmail(email) && $('#inputPassword').val() != '') ? login(email, password) : $('#inputPassword').addClass('error')
 }

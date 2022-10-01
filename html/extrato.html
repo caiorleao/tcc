@@ -35,10 +35,10 @@
     <div class="content">
         <div class="mb-4 user-data text-white">
             <div class="container-fluid user-info">
-                <h1 class="user-greeting">Olá, <span class="text-yellow">Aline</span>! </h1>
-                <p class="user-notification">Sua fatura do Santander está acima da média!</p>
+                <h1 class="user-greeting">Olá, <span class="text-yellow"></span>! </h1>
+                <p class="user-notification"></p>
             </div>
-            <h2 class="accounts-total text-yellow">R$ 2.000,00</h2>
+            <h2 class="accounts-total text-yellow"></h2>
         </div>
 
         <div class="dashboard">
@@ -55,24 +55,20 @@
                                     <input class="inputField" type="text" name="title" id="title">
                                     <label class="inputLabel" for="category">Categoria</label>
                                     <select class="inputField" name="category" id="category">
-                                        <option value="santander">Santander</option>
-                                        <option value="nubank">Nubank</option>
-                                        <option value="caixa">Caixa</option>
-                                        <option value="bradesco">Bradesco</option>
+                                        <option value="Alimentação">Alimentacao</option>
+                                        <option value="Transporte">Transporte</option>
+                                        <option value="Lazer">Lazer</option>
+                                        <option value="Investimento">Investimento</option>
                                     </select>
                                     <label class="inputLabel sliderLabel" for="value">Valor</label>
                                     <input class="inputField" type="range" name="value" id="value" value="0" min="-1000"
-                                        max="1000" step="1"><span id="valuePrice" class="text-green">R$ 35,00</span>
+                                        max="1000" step="1"><span id="valuePrice" class="text-green">R$ 0,00</span>
                                     <label class="inputLabel" for="account">Conta utilizada</label>
                                     <select class="inputField" name="account" id="account">
-                                        <option value="123">conta - 123</option>
-                                        <option value="144">conta - 144</option>
-                                        <option value="1235">conta - 1235</option>
-                                        <option value="4123">conta - 4123</option>
                                     </select>
                                     <label class="inputLabel" for="title">Data do lançamento</label>
                                     <input class="inputField" type="text" id="datepicker">
-                                    <button class="inputField inputButton" id="addInOut">Adicionar</button>
+                                    <button class="inputButton inoutButton" id="addInOut">Adicionar</button>
                                 </div>
                                 <div class="chart-section">
                                     <div id="chart1" class="feature text-black">

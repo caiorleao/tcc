@@ -8,50 +8,44 @@ var PriceFormatter = new Intl.NumberFormat("pt-br", {
 loadUserData(JSON.parse(localStorage.getItem('user')))
 
 function loadUserData(userData) {
-    var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/usuarios/pesquisar/" + userData.id,
-        "method": "GET",
-        "timeout": 0,
-    };
-
-    $.ajax(settings).done(function (data) {
-        if (data.response.usuario.length >= 0) {
-            localStorage.setItem('user', JSON.stringify(data.response.usuario[0]))
-            $(".user-name").text(data.response.usuario[0].nome)
-            loadAccounts(userData)
-            loadExtract(userData)
-            loadInvestorTips(userData)
-            loadGoals(userData)
-        }
-    });
+    $(".user-name").text(userData.nome)
+    loadAccounts(userData)
+    loadExtract(userData)
+    loadInvestorTips(userData)
+    loadGoals(userData)
 }
 
 function loadAccounts(userData) {
-    var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/contas/usuariocontas/" + userData.id,
-        "method": "GET",
-        "timeout": 0,
-    };
-
-    $.ajax(settings).done(function (data) {
+    if (localStorage.getItem('accounts')) {
         let saldo = 0,
             accountTokens = []
-        data.response.forEach(account => {
+        JSON.parse(localStorage.getItem('accounts')).response.forEach(account => {
             saldo += account.saldo
             accountTokens.push({ 'name': account.banco, 'token': account.token })
         });
         $(".accounts-total").text(PriceFormatter.format(saldo))
-    });
+    } else {
+        var settings = {
+            "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/contas/usuariocontas/" + userData.id,
+            "method": "GET",
+            "timeout": 0,
+        };
+
+        $.ajax(settings).done(function (data) {
+            localStorage.setItem('accounts', JSON.stringify(data))
+            let saldo = 0,
+                accountTokens = []
+            data.response.forEach(account => {
+                saldo += account.saldo
+                accountTokens.push({ 'name': account.banco, 'token': account.token })
+            });
+            $(".accounts-total").text(PriceFormatter.format(saldo))
+        });
+    }
 }
 
 function loadExtract(userData) {
-    var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/extratos/carregar/" + userData.id,
-        "method": "GET",
-        "timeout": 0,
-    };
-
-    $.ajax(settings).done(function (data) {
+    if (localStorage.getItem('extracts')) {
         let santander = { name: 'Santander', data: [] },
             xpInvestimentos = { name: 'XP Investimentos', data: [] },
             bradesco = { name: 'Bradesco', data: [] },
@@ -61,7 +55,7 @@ function loadExtract(userData) {
             investimento = 0,
             totalGasto = 0,
             valor = 0,
-            sortedData = data.response.sort((a, b) => new Date(a.dt) - new Date(b.dt))
+            sortedData = JSON.parse(localStorage.getItem('extracts')).response.sort((a, b) => new Date(a.dt) - new Date(b.dt))
         sortedData.forEach(extract => {
             if (extract.valor < 0) {
                 valor = (extract.valor) * (-1)
@@ -96,14 +90,14 @@ function loadExtract(userData) {
                 }
                 totalGasto += valor
             }
-    
+
         });
-    
+
         let banks = []
         santander.data.length > 0 ? banks.push(santander) : ''
         xpInvestimentos.data.length > 0 ? banks.push(xpInvestimentos) : ''
         bradesco.data.length > 0 ? banks.push(bradesco) : ''
-    
+
         //GRAFICO
         var options2 = {
             grid: {
@@ -169,7 +163,7 @@ function loadExtract(userData) {
         };
         var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
         chart2.render();
-    
+
         //DONU
         var options1 = {
             series: [percentage(alimentacao, totalGasto), percentage(transporte, totalGasto), percentage(lazer, totalGasto), percentage(investimento, totalGasto)],
@@ -183,7 +177,148 @@ function loadExtract(userData) {
         };
         var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
         chart1.render();
-    });
+    } else {
+        var settings = {
+            "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/extratos/carregar/" + userData.id,
+            "method": "GET",
+            "timeout": 0,
+        };
+
+        $.ajax(settings).done(function (data) {
+            localStorage.setItem('extracts', JSON.stringify(data))
+            let santander = { name: 'Santander', data: [] },
+                xpInvestimentos = { name: 'XP Investimentos', data: [] },
+                bradesco = { name: 'Bradesco', data: [] },
+                alimentacao = 0,
+                transporte = 0,
+                lazer = 0,
+                investimento = 0,
+                totalGasto = 0,
+                valor = 0,
+                sortedData = data.response.sort((a, b) => new Date(a.dt) - new Date(b.dt))
+            sortedData.forEach(extract => {
+                if (extract.valor < 0) {
+                    valor = (extract.valor) * (-1)
+                    switch (extract.banco) {
+                        case 'Santander':
+                            santander.data.push(valor)
+                            break;
+                        case 'XP Investimentos':
+                            xpInvestimentos.data.push(valor)
+                            break;
+                        case 'Bradesco':
+                            bradesco.data.push(valor)
+                            break;
+                        default:
+                            break;
+                    }
+                    switch (extract.categoria) {
+                        case 'Alimentação':
+                            alimentacao += valor
+                            break;
+                        case 'Transporte':
+                            transporte += valor
+                            break;
+                        case 'Lazer':
+                            lazer += valor
+                            break;
+                        case 'Investimento':
+                            investimento += valor
+                            break;
+                        default:
+                            break;
+                    }
+                    totalGasto += valor
+                }
+
+            });
+
+            let banks = []
+            santander.data.length > 0 ? banks.push(santander) : ''
+            xpInvestimentos.data.length > 0 ? banks.push(xpInvestimentos) : ''
+            bradesco.data.length > 0 ? banks.push(bradesco) : ''
+
+            //GRAFICO
+            var options2 = {
+                grid: {
+                    borderColor: '#f1f1f1',
+                },
+                colors: ['#eac43d', '#2a5c99', '#001b48'],
+                foreColor: '#ffffff',
+                series: banks,
+                chart: {
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                        enabled: false
+                    },
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    width: [5, 7, 5],
+                    curve: 'smooth',
+                    dashArray: [0, 8, 5]
+                },
+                legend: {
+                    tooltipHoverFormatter: function (val, opts) {
+                        return val + ' - ' + opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] + ''
+                    }
+                },
+                markers: {
+                    size: 0,
+                    hover: {
+                        sizeOffset: 6
+                    }
+                },
+                xaxis: {
+                    categories: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'],
+                },
+                tooltip: {
+                    y: [
+                        {
+                            title: {
+                                formatter: function (val) {
+                                    return val + " Reais"
+                                }
+                            }
+                        },
+                        {
+                            title: {
+                                formatter: function (val) {
+                                    return val + " Reais"
+                                }
+                            }
+                        },
+                        {
+                            title: {
+                                formatter: function (val) {
+                                    return val + " Reais";
+                                }
+                            }
+                        }
+                    ]
+                },
+            };
+            var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+            chart2.render();
+
+            //DONU
+            var options1 = {
+                series: [percentage(alimentacao, totalGasto), percentage(transporte, totalGasto), percentage(lazer, totalGasto), percentage(investimento, totalGasto)],
+                labels: ['Alimentação', 'Transporte', 'Lazer', "Investimento"],
+                colors: ['#eac43d', '#2a5c99', '#001b48', '#242e38'],
+                foreColor: '#ffffff',
+                chart: {
+                    type: 'donut',
+                },
+                width: '100%'
+            };
+            var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
+            chart1.render();
+        });
+    }
 
 
 }
@@ -221,18 +356,11 @@ function loadInvestorTips(user) {
 }
 
 function loadGoals(user) {
-
-    var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/metas/carregar/"+user.id,
-        "method": "GET",
-        "timeout": 0,
-      };
-      
-      $.ajax(settings).done(function (data) {
-          let porcentagem
-          data.response.forEach(goal => {
-              porcentagem = percentage(goal.vl_atual, goal.vl_total)
-              $('.goals').append(`
+    if (localStorage.getItem('goals')) {
+        let porcentagem
+        JSON.parse(localStorage.getItem('goals')).response.forEach(goal => {
+            porcentagem = percentage(goal.vl_atual, goal.vl_total)
+            $('.goals').append(`
               <div class="progressSection">
                   <div class="progress-info">
                       <div class="goalData">
@@ -252,8 +380,42 @@ function loadGoals(user) {
                   </div>
               </div>
               `)
-          })
-      });
+        })
+    } else {
+        var settings = {
+            "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/metas/carregar/" + user.id,
+            "method": "GET",
+            "timeout": 0,
+        };
+
+        $.ajax(settings).done(function (data) {
+            localStorage.setItem('goals', JSON.stringify(data))
+            let porcentagem
+            data.response.forEach(goal => {
+                porcentagem = percentage(goal.vl_atual, goal.vl_total)
+                $('.goals').append(`
+                  <div class="progressSection">
+                      <div class="progress-info">
+                          <div class="goalData">
+                              <span class="goalTitle data text-yellow">${goal.titulo}</span>
+                              <span class="goalCategory data text-blue-bright">${goal.categoria}</span>
+                              <span class="goalDate data text-gray-secondary">${goal.recorrencia} - ${goal.dt_lancamento}</span>
+                          </div>
+                          <div class="goalValues">
+                              <span class="goalCurrentValue text-gray-secondary">${PriceFormatter.format(goal.vl_atual)}</span>
+                              <span class="goalTotalValue text-yellow">/${PriceFormatter.format(goal.vl_total)}</span>
+                              <span class="goalPercentage text-yellow">- ${Math.round(porcentagem)}%</span>
+                          </div>
+                      </div>
+                      <div class="progress" id="${goal.titulo}">
+                          <div class="progress-bar" role="progressbar" style="width: ${porcentagem}%"
+                              aria-valuenow="${porcentagem}" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                  </div>
+                  `)
+            })
+        });
+    }
 
 }
 

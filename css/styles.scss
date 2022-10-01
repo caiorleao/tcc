@@ -119,6 +119,12 @@ body {
             background-color: $color-yellow-secondary;
             color: $color-background-2;
         }
+        &.inoutButton {
+            width: 356px;
+        }
+        &.goalButton{
+            width: 356px;
+        }
     }
     .inputButtonForm {
         width: 200px;
@@ -296,6 +302,10 @@ body {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     grid-gap: 20px;
+                    &.goalsCards {
+                        grid-template-columns: 1fr;
+                        margin: 0px 140px;
+                    }
                     &.cadastro {
                         margin: 36px auto;
                         display: grid;
@@ -318,6 +328,13 @@ body {
                         border-radius: 24px;
                         &.contentCard-fullsize {
                             width: 1372px;
+                            height: max-content;
+                            &.goalsCards {
+                                width: max-content;
+                            }
+                        }
+                        &.goalsCard {
+                            width: 1077px;
                             height: max-content;
                         }
                         &.contentCard-three {
@@ -451,8 +468,14 @@ body {
                                     width: 325px;
                                 }
                                 &.goalsForm {
-                                    width: 49%;
-                                    border: 1px solid white;
+                                    width: 100%;
+                                    display: inline-flex;
+                                    .half-form {
+                                        width: 50%;
+                                        &.first{
+                                            margin: 0 10px 0 0;
+                                        }
+                                    }
                                 }
                                 .questions {
                                     max-width: max-content;
@@ -562,7 +585,7 @@ body {
                                         }
                                     }
                                 }
-                                #valuePrice {
+                                #valuePrice, #initialValuePrice {
                                     font-style: normal;
                                     font-weight: 400;
                                     font-size: 24px;
