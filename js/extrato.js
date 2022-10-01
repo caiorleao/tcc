@@ -1,5 +1,3 @@
-import { $ } from "dom7";
-
 $("#datepicker").datepicker();
 
 var PriceFormatter = new Intl.NumberFormat("pt-br", {
@@ -7,7 +5,7 @@ var PriceFormatter = new Intl.NumberFormat("pt-br", {
     currency: "BRL",
 });
 let selectedMeta
-//loadUserData(JSON.parse(localStorage.getItem('user')))
+loadUserData(JSON.parse(localStorage.getItem('user')))
 
 function loadUserData(userData) {
     var settings = {
@@ -22,6 +20,7 @@ function loadUserData(userData) {
             $(".user-name").text(data.response.usuario[0].nome)
             loadAccounts(data.response.usuario[0])
             loadExtract(userData)
+            loadGoals(userData)
         }
     });
 }
@@ -48,7 +47,7 @@ function loadAccounts(userData) {
 function loadGoals(user) {
     if (localStorage.getItem('goals')) {
         JSON.parse(localStorage.getItem('goals')).response.forEach(goal => {
-            $('#account').append(`<option value="${goal.idmeta}" data-current="${goal.vl_atual}">Meta - ${goal.titulo}</option>`)
+            $('#category').append(`<option value="Meta - ${goal.titulo}" data-id="${goal.idmeta}" data-current="${goal.vl_atual}">Meta - ${goal.titulo}</option>`)
         })
     } else {
         var settings = {
@@ -60,7 +59,7 @@ function loadGoals(user) {
         $.ajax(settings).done(function (data) {
             localStorage.setItem('goals', JSON.stringify(data))
             data.response.forEach(goal => {
-                $('#account').append(`<option value="${goal.idmeta}" data-current="${goal.vl_atual}">Meta - ${goal.titulo}</option>`)
+                $('#category').append(`<option value="Meta - ${goal.titulo}" data-id="${goal.metaId}" data-current="${goal.vl_atual}">Meta - ${goal.titulo}</option>`)
             })
         });
     }
@@ -80,7 +79,7 @@ function loadExtract(user) {
             alimentacao = 0,
             transporte = 0,
             lazer = 0,
-            investimento = 0,
+            metas = 0,
             totalGasto = 0,
             valor = 0,
             sortedData = data.response.sort((a, b) => new Date(b.dt) - new Date(a.dt))
@@ -110,8 +109,8 @@ function loadExtract(user) {
                     case 'Lazer':
                         lazer += valor
                         break;
-                    case 'Investimento':
-                        investimento += valor
+                    case extract.categoria.includes('Meta'):
+                        metas += valor
                         break;
                     default:
                         break;
@@ -140,8 +139,8 @@ function loadExtract(user) {
 
         //DONU
         var options1 = {
-            series: [percentage(alimentacao, totalGasto), percentage(transporte, totalGasto), percentage(lazer, totalGasto), percentage(investimento, totalGasto)],
-            labels: ['Alimentação', 'Transporte', 'Lazer', "Investimento"],
+            series: [percentage(alimentacao, totalGasto), percentage(transporte, totalGasto), percentage(lazer, totalGasto), percentage(metas, totalGasto)],
+            labels: ['Alimentação', 'Transporte', 'Lazer', "Metas"],
             colors: ['#eac43d', '#2a5c99', '#001b48', '#242e38'],
             foreColor: '#ffffff',
             chart: {
@@ -160,7 +159,7 @@ $('#addInOut').on('click', function () {
     if ($('#title').val() != '' && $('#value').val() != '' && $('#datepicker').val() != '' && $('#account').val()) {
         let lancamento = {
             "titulo": $('#title').val(),
-            "categoria": $('#category').val(),
+            "categoria": $('#category option:selected').val(),
             "valor": $('#value').val(),
             "data": $('#datepicker').val()
         }
@@ -205,7 +204,7 @@ function updateSaldo() {
 }
 
 function updateMeta(){
-    let metaId = $('#category').val()
+    let metaId = $('#category option:selected').attr('data-id') 
     let newValue = parseInt($('#category option:selected').attr('data-current')) + parseInt($('#value').val())
     var settings = {
         "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/metas/alterarValor/"+metaId+"/"+newValue,

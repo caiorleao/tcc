@@ -2,7 +2,7 @@ var PriceFormatter = new Intl.NumberFormat("pt-br", {
     style: "currency",
     currency: "BRL",
 });
-//loadUserData(JSON.parse(localStorage.getItem('user')))
+loadUserData(JSON.parse(localStorage.getItem('user')))
 
 function loadUserData(userData) {
     var settings = {
