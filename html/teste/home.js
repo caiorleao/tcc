@@ -41,7 +41,7 @@ function loadAccounts(userData) {
         $(".accounts-total").text(PriceFormatter.format(localStorage.getItem('saldo')))
     } else {
         var settings = {
-            "url": "https://rest-api-startupone.herokuapp.com/contas/usuariocontas/" + userData.id,
+            "url": "localhost:3000/contas/usuariocontas/" + userData.id,
             "method": "GET",
             "timeout": 0,
         };
@@ -190,7 +190,7 @@ function loadExtract(userData) {
         chart1.render();
     } else {
         var settings = {
-            "url": "https://rest-api-startupone.herokuapp.com/extratos/carregar/" + userData.id,
+            "url": "localhost:3000/extratos/carregar/" + userData.id,
             "method": "GET",
             "timeout": 0,
         };
@@ -388,7 +388,7 @@ function loadGoals(user) {
         JsLoadingOverlay.hide()
     } else {
         var settings = {
-            "url": "https://rest-api-startupone.herokuapp.com/metas/carregar/" + user.id,
+            "url": "localhost:3000/metas/carregar/" + user.id,
             "method": "GET",
             "timeout": 0,
         };

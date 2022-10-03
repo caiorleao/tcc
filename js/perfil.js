@@ -1,4 +1,3 @@
-import { $ } from "dom7";
 
 let selectedMeta
 loadUserData(JSON.parse(localStorage.getItem('user')))
@@ -35,4 +34,3 @@ function loadUserData(userData) {
 function loadAccounts() {
     $(".addBanks").append(`<p class="banks">${data.response[0].banco} - ${data.response[0].token}</p>`)
 }
-

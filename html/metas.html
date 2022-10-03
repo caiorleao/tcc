@@ -39,14 +39,13 @@
             </div>
             <h2 class="accounts-total text-yellow"></h2>
         </div>
-
         <div class="dashboard">
             <div class="container">
                 <div class="row ">
                     <div class="cards goalsCards">
                         <div class="contentCard contentCard-fullsize goalsCard manualInout">
                             <div class="contentCard-header">
-                                <span class="cardHeader-title text-white">Lançamento manual</span>
+                                <span class="cardHeader-title text-white">Cadastrar Meta</span>
                             </div>
                             <div class="contentCard-body">
                                 <div class="inOutForm goalsForm text-white">
@@ -57,14 +56,14 @@
                                         <input class="inputField" type="range" name="value" id="value" value="0"
                                             min="0" max="10000" step="1"><span id="valuePrice" class="text-green">R$
                                             0,00</span>
-                                        <label class="inputLabel" for="title">Data do lançamento</label>
+                                        <label class="inputLabel" for="title">Data inicial</label>
                                         <input class="inputField" type="text" id="datepicker">
                                     </div>
                                     <div class="half-form">
                                         <label class="inputLabel" for="category">Categoria</label>
                                         <select class="inputField" name="category" id="category">
                                             <option value="Alimentação">Alimentacao</option>
-                                            <option value="Transporte">Tr ion>
+                                            <option value="Transporte">Transporte</option>
                                             <option value="Lazer">Lazer</option>
                                             <option value="Investimento">Investimento</option>
                                         </select>
@@ -108,8 +107,7 @@
 
 
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <p class="col-md-4 mb-0 text-muted">© 2022 Company, Inc</p>
-
+        <p class="col-md-4 mb-0 text-muted">© 2022 FinancePie</p>
         <a href="/"
             class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
             <svg class="bi me-2" width="40" height="32">
@@ -118,11 +116,7 @@
         </a>
 
         <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Perfil de investidor</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Metas</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+            
         </ul>
     </footer>
 
@@ -138,6 +132,8 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-loading-overlay@1.1.0/dist/js-loading-overlay.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    
     <script type="module" src="../js/metas.js"></script>
 </body>
 

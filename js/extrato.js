@@ -1,4 +1,4 @@
-$("#datepicker").datepicker();
+
 var configs = {
     'overlayBackgroundColor': '#1e1e1e',
     'overlayOpacity': 0.3,
@@ -18,6 +18,7 @@ var PriceFormatter = new Intl.NumberFormat("pt-br", {
     style: "currency",
     currency: "BRL",
 });
+$("#datepicker").mask('00/00/0000');
 let selectedMeta
 loadUserData(JSON.parse(localStorage.getItem('user')))
 
@@ -33,6 +34,13 @@ function loadUserData(userData) {
             "url": "https://rest-api-startupone.herokuapp.com/usuarios/pesquisar/" + userData.id,
             "method": "GET",
             "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "127.0.0.1:5500/html/extrato.html",
+                "Access-Control-Allow-Methods": "GET",
+                "Access-Control-Max-Age": "86400",
+                "Access-Control-Allow-Headers": "*"
+            },
         };
 
         $.ajax(settings).done(function (data) {
@@ -59,13 +67,19 @@ function loadAccounts(userData) {
             accountTokens.push({ 'name': account.banco, 'token': account.token })
             $('#account').append(`<option value="${account.idconta}">${account.banco}</option>`)
         });
-        $(".accounts-total").text(PriceFormatter.format(saldo))
-
+        $(".accounts-total").text(PriceFormatter.format(localStorage.getItem('saldo')))
     } else {
         var settings = {
-            "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/contas/usuariocontas/" + userData.id,
+            "url": "https://rest-api-startupone.herokuapp.com/contas/usuariocontas/" + userData.id,
             "method": "GET",
             "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "127.0.0.1:5500/html/extrato.html",
+                "Access-Control-Allow-Methods": "GET",
+                "Access-Control-Max-Age": "86400",
+                "Access-Control-Allow-Headers": "*"
+            },
         };
 
         $.ajax(settings).done(function (data) {
@@ -93,6 +107,13 @@ function loadGoals(user) {
             "url": "https://rest-api-startupone.herokuapp.com/metas/carregar/" + user.id,
             "method": "GET",
             "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "127.0.0.1:5500/html/extrato.html",
+                "Access-Control-Allow-Methods": "GET",
+                "Access-Control-Max-Age": "86400",
+                "Access-Control-Allow-Headers": "*"
+            },
         };
 
         $.ajax(settings).done(function (data) {
@@ -113,7 +134,7 @@ function loadExtract(user) {
             alimentacao = 0,
             transporte = 0,
             lazer = 0,
-            metas = 0,
+            investimento = 0,
             totalGasto = 0,
             valor = 0,
             sortedData = JSON.parse(localStorage.getItem('extracts')).response.sort(function (a, b) {
@@ -138,21 +159,14 @@ function loadExtract(user) {
                     default:
                         break;
                 }
-                switch (extract.categoria) {
-                    case 'Alimentação':
-                        alimentacao += valor
-                        break;
-                    case 'Transporte':
-                        transporte += valor
-                        break;
-                    case 'Lazer':
-                        lazer += valor
-                        break;
-                    case extract.categoria.includes('Meta'):
-                        metas += valor
-                        break;
-                    default:
-                        break;
+                if (extract.categoria == 'Alimentação') {
+                    alimentacao += valor
+                } else if (extract.categoria == 'Transporte') {
+                    transporte += valor
+                } else if (extract.categoria == 'Lazer') {
+                    lazer += valor
+                } else if (extract.categoria.includes('Meta')) {
+                    investimento += valor
                 }
                 totalGasto += valor
             }
@@ -177,13 +191,15 @@ function loadExtract(user) {
         bradesco.data.length > 0 ? banks.push(bradesco) : ''
 
         //DONU
+        //DONU
         var options1 = {
-            series: [percentage(alimentacao, totalGasto), percentage(transporte, totalGasto), percentage(lazer, totalGasto), percentage(metas, totalGasto)],
+            series: [percentage(alimentacao, totalGasto), percentage(transporte, totalGasto), percentage(lazer, totalGasto), percentage(investimento, totalGasto)],
             labels: ['Alimentação', 'Transporte', 'Lazer', "Metas"],
             colors: ['#eac43d', '#2a5c99', '#001b48', '#242e38'],
             foreColor: '#ffffff',
             chart: {
                 type: 'donut',
+                foreColor: '#FFFFFF'
             },
             width: '100%'
         };
@@ -191,9 +207,16 @@ function loadExtract(user) {
         chart1.render();
     } else {
         var settings = {
-            "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/extratos/carregar/" + user.id,
+            "url": "https://rest-api-startupone.herokuapp.com/extratos/carregar/" + user.id,
             "method": "GET",
             "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "127.0.0.1:5500/html/extrato.html",
+                "Access-Control-Allow-Methods": "GET",
+                "Access-Control-Max-Age": "86400",
+                "Access-Control-Allow-Headers": "*"
+            },
         };
         $.ajax(settings).done(function (data) {
             let santander = { name: 'Santander', data: [] },
@@ -202,7 +225,7 @@ function loadExtract(user) {
                 alimentacao = 0,
                 transporte = 0,
                 lazer = 0,
-                metas = 0,
+                investimento = 0,
                 totalGasto = 0,
                 valor = 0,
                 sortedData = data.response.sort(function (a, b) {
@@ -226,21 +249,14 @@ function loadExtract(user) {
                         default:
                             break;
                     }
-                    switch (extract.categoria) {
-                        case 'Alimentação':
-                            alimentacao += valor
-                            break;
-                        case 'Transporte':
-                            transporte += valor
-                            break;
-                        case 'Lazer':
-                            lazer += valor
-                            break;
-                        case extract.categoria.includes('Meta'):
-                            metas += valor
-                            break;
-                        default:
-                            break;
+                    if (extract.categoria == 'Alimentação') {
+                        alimentacao += valor
+                    } else if (extract.categoria == 'Transporte') {
+                        transporte += valor
+                    } else if (extract.categoria == 'Lazer') {
+                        lazer += valor
+                    } else if (extract.categoria.includes('Meta')) {
+                        investimento += valor
                     }
                     totalGasto += valor
                 }
@@ -266,12 +282,13 @@ function loadExtract(user) {
 
             //DONU
             var options1 = {
-                series: [percentage(alimentacao, totalGasto), percentage(transporte, totalGasto), percentage(lazer, totalGasto), percentage(metas, totalGasto)],
+                series: [percentage(alimentacao, totalGasto), percentage(transporte, totalGasto), percentage(lazer, totalGasto), percentage(investimento, totalGasto)],
                 labels: ['Alimentação', 'Transporte', 'Lazer', "Metas"],
                 colors: ['#eac43d', '#2a5c99', '#001b48', '#242e38'],
                 foreColor: '#ffffff',
                 chart: {
                     type: 'donut',
+                    foreColor: '#FFFFFF'
                 },
                 width: '100%'
             };
@@ -283,9 +300,13 @@ function loadExtract(user) {
 
 }
 
+function validateDate(date) {
+
+}
+
 $('#addInOut').on('click', function () {
     if ($('#title').val() != '' && $('#value').val() != 0 && $('#datepicker').val() != '' && $('#account').val()) {
-        $('.inoutButton').removeClass('show') 
+        $('.inoutButton').removeClass('show')
         JsLoadingOverlay.show(configs);
         let lancamento = {
             "titulo": $('#title').val(),
@@ -298,7 +319,11 @@ $('#addInOut').on('click', function () {
             "method": "POST",
             "timeout": 0,
             "headers": {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "127.0.0.1:5500/html/extrato.html",
+                "Access-Control-Allow-Methods": "GET",
+                "Access-Control-Max-Age": "86400",
+                "Access-Control-Allow-Headers": "*"
             },
             "data": JSON.stringify(lancamento),
         };
@@ -310,16 +335,23 @@ $('#addInOut').on('click', function () {
             }
         });
     } else {
-        $('.errroInOut').addClass('show') 
+        $('.errroInOut').addClass('show')
     }
 })
 
 function updateSaldo() {
 
     var settings = {
-        "url": "https://rest-api-startupone.herokuapp.com/contas/alterarSaldo/" + $('#account').val() + "/+" + $('#value').val(),
+        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/contas/alterarSaldo/" + $('#account').val() + "/+" + $('#value').val(),
         "method": "PATCH",
         "timeout": 0,
+        "headers": {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "127.0.0.1:5500/html/extrato.html",
+            "Access-Control-Allow-Methods": "GET",
+            "Access-Control-Max-Age": "86400",
+            "Access-Control-Allow-Headers": "*"
+        },
     };
 
     $.ajax(settings).done(function (data) {
@@ -338,9 +370,16 @@ function updateMeta() {
     let metaId = $('#category option:selected').attr('data-id')
     let newValue = parseInt($('#category option:selected').attr('data-current')) + parseInt($('#value').val())
     var settings = {
-        "url": "https://rest-api-startupone.herokuapp.com/metas/alterarValor/" + metaId + "/" + newValue,
+        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/metas/alterarValor/" + metaId + "/" + newValue,
         "method": "PATCH",
         "timeout": 0,
+        "headers": {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "127.0.0.1:5500/html/extrato.html",
+            "Access-Control-Allow-Methods": "GET",
+            "Access-Control-Max-Age": "86400",
+            "Access-Control-Allow-Headers": "*"
+        },
     };
 
     $.ajax(settings).done(function (response) {

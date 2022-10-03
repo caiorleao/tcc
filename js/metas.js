@@ -17,13 +17,14 @@ var configs = {
 };
 //JsLoadingOverlay.show(configs);
 //JsLoadingOverlay.hide();
+$("#datepicker").mask('00/00/0000');
 
 loadUserData(JSON.parse(localStorage.getItem('user')))
 
 function loadUserData(userData) {
     JsLoadingOverlay.show(configs)
     if (localStorage.getItem('user') && localStorage.getItem('hasUpdated') != "true") {
-        $(".user-name").text(JSON.parse(localStorage.getItem('accounts')))
+        $(".user-name").text(JSON.parse(localStorage.getItem('user')).nome)
         loadAccounts(userData)
         loadGoals(userData)
     } else {
@@ -55,8 +56,7 @@ function loadAccounts(userData) {
             saldo += account.saldo
             accountTokens.push({ 'name': account.banco, 'token': account.token })
         });
-        $(".accounts-total").text(PriceFormatter.format(saldo))
-    } else {
+        $(".accounts-total").text(PriceFormatter.format(localStorage.getItem('saldo')))    } else {
         var settings = {
             "url": "https://rest-api-startupone.herokuapp.com/contas/usuariocontas/" + userData.id,
             "method": "GET",
@@ -81,7 +81,7 @@ function loadAccounts(userData) {
 
 
 $('#addInOut').on('click', function () {
-    if ($('#title').val() != '' && $('#value').val() != '0' && $('#value').val() != '0' && $('#inicitialValue').val() != '' && $('#category').val() && $('#recorrencia').val()) {
+    if ($('#title').val() != '' && $('#value').val() != '' && $('#value').val() != '0' && $('#inicitialValue').val() != '' && $('#category').val() && $('#recorrencia').val()) {
         addGoal()
     } else {
 
