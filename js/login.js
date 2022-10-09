@@ -16,7 +16,7 @@ function validateEmail(email) {
 
 function login(email, password) {
     var settings = {
-        "url": "https://rest-api-startupone.herokuapp.com/usuarios/login/"+email+"/"+password,
+        "url": "localhost:3000/usuarios/login/"+email+"/"+password,
         "method": "GET",
         "timeout": 0,
     };

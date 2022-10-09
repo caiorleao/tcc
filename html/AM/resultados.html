@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jornadas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Karla' rel='stylesheet'>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand navbar-dark" aria-label="Second navbar example">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="home.html"><img src="../../img/ey-white-logo.png" alt=""></a>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="mb-4 user-data text-white">
+            <div class="container-fluid user-info">
+                <h1 class="user-greeting">Olá, <span class="text-yellow user-name"></span>! </h1>
+                <p class="user-notification">O seu gasto na conta <span class="text-yellow-secondary">Santander</span>
+                    está mais alto que o normal. Veja mais na página de <a href="extrato.html"
+                        class="text-yellow">Extratos</a></p>
+            </div>
+            <h2 class="accounts-total text-yellow"></h2>
+        </div>
+        <div class="dashboard">
+            <div class="container">
+                <div class="row">
+                    <div class="cards journeyCards" style="margin-top:40px">
+                        <div class="contentCard contentCard-fullsize journeyCard manualInout">
+                            <div class="contentCard-header">
+                                <span class="cardHeader-title text-white">Resultados da jornada 1 - <span class="text-yellow">Pessoa
+                                        desenvolvedora</span></span>
+                            </div>
+                            <div class="contentCard-body">
+                                <div class="inOutForm goalsForm text-white">
+                                    <div class="half-form first">
+                                        <div id="chart" class="feature text-black">
+                                        </div>
+                                        <p class="message resultMessage">
+                                            Seu resultado em <span class="text-yellow">JavaScript</span>, foi <span class="text-green">muito bom!</span>
+                                        </p>
+                                        <p class="message contentMessage">
+                                            Se prepare para os próximos desafios com conteúdos gratuitos da <span class="text-yellow">EY university</span>, para ver mais <a href="extrato.html"
+                                            class="text-yellow">clique aqui</a>.
+                                        </p>
+                                        <p class="message dateMessage">
+                                            Complete esta jornada até o dia <span class="text-yellow">14/10/2022</span> para ter acesso a mais jornadas
+                                        </p>
+                                        <a href="questionario_dev.html"
+                                            class="inputButton inoutButton eyButton large">Continuar para proxima fase</a>
+                                    </div>
+                                    <div class="half-form">
+                                        <div class="profileImage progressArea">
+                                            <div class="progressBar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:40"></div>
+                                            <p class="conclusion">Conclusão da jornada</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-muted">© 2022 EY</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-loading-overlay@1.1.0/dist/js-loading-overlay.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script src="resultados.js"></script>
+</body>
+
+</html>

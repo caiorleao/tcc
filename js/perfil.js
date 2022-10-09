@@ -4,7 +4,7 @@ loadUserData(JSON.parse(localStorage.getItem('user')))
 
 function loadUserData(userData) {
     var settings = {
-        "url": "https://rest-api-startupone.herokuapp.com/usuarios/pesquisar/" + userData.id,
+        "url": "localhost:3000/usuarios/pesquisar/" + userData.id,
         "method": "GET",
         "timeout": 0,
     };

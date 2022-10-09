@@ -31,7 +31,7 @@ function loadUserData(userData) {
         loadGoals(userData)
     } else {
         var settings = {
-            "url": "https://rest-api-startupone.herokuapp.com/usuarios/pesquisar/" + userData.id,
+            "url": "localhost:3000/usuarios/pesquisar/" + userData.id,
             "method": "GET",
             "timeout": 0,
             "headers": {
@@ -70,7 +70,7 @@ function loadAccounts(userData) {
         $(".accounts-total").text(PriceFormatter.format(localStorage.getItem('saldo')))
     } else {
         var settings = {
-            "url": "https://rest-api-startupone.herokuapp.com/contas/usuariocontas/" + userData.id,
+            "url": "localhost:3000/contas/usuariocontas/" + userData.id,
             "method": "GET",
             "timeout": 0,
             "headers": {
@@ -104,7 +104,7 @@ function loadGoals(user) {
         })
     } else {
         var settings = {
-            "url": "https://rest-api-startupone.herokuapp.com/metas/carregar/" + user.id,
+            "url": "localhost:3000/metas/carregar/" + user.id,
             "method": "GET",
             "timeout": 0,
             "headers": {
@@ -207,7 +207,7 @@ function loadExtract(user) {
         chart1.render();
     } else {
         var settings = {
-            "url": "https://rest-api-startupone.herokuapp.com/extratos/carregar/" + user.id,
+            "url": "localhost:3000/extratos/carregar/" + user.id,
             "method": "GET",
             "timeout": 0,
             "headers": {
@@ -315,7 +315,7 @@ $('#addInOut').on('click', function () {
             "data": $('#datepicker').val()
         }
         var settings = {
-            "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/extratos/cadastro/" + $('#account').val(),
+            "url": "localhost:3000/extratos/cadastro/" + $('#account').val(),
             "method": "POST",
             "timeout": 0,
             "headers": {
@@ -342,7 +342,7 @@ $('#addInOut').on('click', function () {
 function updateSaldo() {
 
     var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/contas/alterarSaldo/" + $('#account').val() + "/+" + $('#value').val(),
+        "url": "localhost:3000/contas/alterarSaldo/" + $('#account').val() + "/+" + $('#value').val(),
         "method": "PATCH",
         "timeout": 0,
         "headers": {
@@ -370,7 +370,7 @@ function updateMeta() {
     let metaId = $('#category option:selected').attr('data-id')
     let newValue = parseInt($('#category option:selected').attr('data-current')) + parseInt($('#value').val())
     var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/metas/alterarValor/" + metaId + "/" + newValue,
+        "url": "localhost:3000/metas/alterarValor/" + metaId + "/" + newValue,
         "method": "PATCH",
         "timeout": 0,
         "headers": {

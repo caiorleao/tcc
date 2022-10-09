@@ -29,7 +29,7 @@ function loadUserData(userData) {
         loadGoals(userData)
     } else {
         var settings = {
-            "url": "https://rest-api-startupone.herokuapp.com/usuarios/pesquisar/" + userData.id,
+            "url": "localhost:3000/usuarios/pesquisar/" + userData.id,
             "method": "GET",
             "timeout": 0,
         };
@@ -58,7 +58,7 @@ function loadAccounts(userData) {
         });
         $(".accounts-total").text(PriceFormatter.format(localStorage.getItem('saldo')))    } else {
         var settings = {
-            "url": "https://rest-api-startupone.herokuapp.com/contas/usuariocontas/" + userData.id,
+            "url": "localhost:3000/contas/usuariocontas/" + userData.id,
             "method": "GET",
             "timeout": 0,
         };
@@ -116,7 +116,7 @@ function loadGoals(user) {
         })
     } else {
         var settings = {
-            "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/metas/carregar/" + user.id,
+            "url": "https://cors-anywhere.herokuapp.com/localhost:3000/metas/carregar/" + user.id,
             "method": "GET",
             "timeout": 0,
         };
@@ -164,13 +164,13 @@ function addGoal(user) {
         "vl_atual": $('#inicitialValue').val()
     }
     var settings = {
-        "url": "https://cors-anywhere.herokuapp.com/https://rest-api-startupone.herokuapp.com/metas/cadastro/4",
+        "url": "https://cors-anywhere.herokuapp.com/localhost:3000/metas/cadastro/4",
         "method": "POST",
         "timeout": 0,
         "headers": {
             "Content-Type": "application/json"
         },
-        "data": JSON.stringify(goal),
+        "data": goal,
     };
 
     $.ajax(settings).done(function (response) {

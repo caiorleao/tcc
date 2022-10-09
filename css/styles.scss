@@ -4,7 +4,7 @@ $color-background: #0b0b0b;
 $color-background-2: #161616;
 $color-gray-dark: #1e1e1e;
 $color-gray-light-dark: #2f2e2c;
-$color-yellow: #eac43d;
+$color-yellow: #ffe600;
 $color-yellow-secondary: #c98c17;
 $color-gray: #4f4e4c;
 $color-gray-secondary: #858585;
@@ -126,6 +126,28 @@ body {
         &.inoutButton {
             width: 356px;
         }
+        &.eyButton {
+            padding: 12px;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 27px;
+            color: $color-gray-light-dark;
+            width: 200px;
+            margin-right: 8px;
+            &.large {
+                width: max-content;
+            }
+            &.goback {
+                background-color: $color-gray-light-dark;
+                color: $color-gray-secondary;
+                &:hover {
+                    background-color: $color-background-2;
+                }
+            }
+        }
         &.goalButton {
             width: 356px;
         }
@@ -156,6 +178,13 @@ body {
         background-color: $color-gray-dark;
         border-bottom: 1px solid $color-gray;
         padding: 20px 24px;
+        .container-fluid {
+            .navbar-brand {
+                img {
+                    width: 100px;
+                }
+            }
+        }
         .header-links {
             margin: 0px 15px;
             font-style: normal;
@@ -310,6 +339,11 @@ body {
                         grid-template-columns: 1fr;
                         margin: 0px 140px;
                     }
+                    &.journeyCards {
+                        width: 1255px;
+                        height: max-content;
+                        grid-template-columns: 1fr;
+                    }
                     &.cadastro {
                         margin: 36px auto;
                         display: grid;
@@ -340,6 +374,13 @@ body {
                         &.goalsCard {
                             width: 1077px;
                             height: max-content;
+                        }
+                        &.journeyCard {
+                            width: 100%;
+                            height: max-content;
+                            &.hide {
+                                display: none;
+                            }
                         }
                         &.contentCard-three {
                             width: 328px;
@@ -478,14 +519,121 @@ body {
                                         width: 50%;
                                         &.first {
                                             margin: 0 10px 0 0;
+                                            border-right: 1px solid $color-gray;
+                                            p {
+                                                margin-right: 10px;
+                                            }
+                                        }
+                                        .message {
+                                            font-weight: 400;
+                                            font-size: 23px;
+                                            line-height: 27px;
+                                            text-align: center;
+                                            &.contentMessage {
+                                                font-size: 18px;
+                                                text-align: left;
+                                            }
+                                            &.dateMessage {
+                                                font-size: 16px;
+                                                text-align: left;
+                                            }
+                                        }
+                                        .htmlExample {
+                                            width: max-content;
+                                            margin: 20% auto;
+                                        }
+                                        .audioImage {
+                                            width: max-content;
+                                            margin: 100px auto;
+                                            img {
+                                                width: 125px;
+                                                margin: 0 auto;
+                                                display: block;
+                                                &:hover {
+                                                    cursor: pointer;
+                                                }
+                                            }
                                         }
                                         .profileImage {
+                                            position: relative;
+                                            @keyframes growProgressBar {
+                                                0%,
+                                                33% {
+                                                    --pgPercentage: 0;
+                                                }
+                                                100% {
+                                                    --pgPercentage: var(--value);
+                                                }
+                                            }
+                                            &.progressArea{
+                                                margin-top: 200px;
+                                            }
+                                            .conclusion{
+                                                display: block;
+                                                margin: 24px auto;
+                                                width: max-content;
+                                            }
+                                            .progressBar{
+                                                margin: 0 auto;
+                                            }
+
+                                            @property --pgPercentage {
+                                                syntax: "<number>";
+                                                inherits: false;
+                                                initial-value: 0;
+                                            }
+
+                                            div[role="progressbar"] {
+                                                --size: 12rem;
+                                                --fg: #ffe600;
+                                                --bg: #131313;
+                                                --pgPercentage: var(--value);
+                                                animation: growProgressBar 3s 1 forwards;
+                                                width: var(--size);
+                                                height: var(--size);
+                                                border-radius: 50%;
+                                                display: grid;
+                                                place-items: center;
+                                                background: radial-gradient(
+                                                        closest-side,
+                                                        #1e1e1e 80%,
+                                                        transparent 0 99.9%,
+                                                        #1e1e1e 0
+                                                    ),
+                                                    conic-gradient(
+                                                        var(--fg) calc(var(--pgPercentage) * 1%),
+                                                        var(--bg) 0
+                                                    );
+                                                font-family: Helvetica, Arial, sans-serif;
+                                                font-size: calc(var(--size) / 5);
+                                                color: var(--fg);
+                                            }
+
+                                            div[role="progressbar"]::before {
+                                                counter-reset: percentage var(--value);
+                                                content: counter(percentage) "%";
+                                            }
+
+                                            /* demo */
+                                            body {
+                                                margin: 0;
+                                                display: flex;
+                                                align-items: center;
+                                                justify-content: center;
+                                                height: 100vh;
+                                            }
                                             .img {
                                                 width: 300px;
                                                 height: 300px;
                                                 background-color: $color-gray;
                                                 border-radius: 100%;
                                                 margin: 0 auto;
+                                            }
+                                            img {
+                                                margin: auto;
+                                                position: absolute;
+                                                display: block;
+                                                left: 4%;
                                             }
                                             .label {
                                                 margin: 0 auto;
