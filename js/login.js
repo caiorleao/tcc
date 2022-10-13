@@ -14,20 +14,19 @@ function validateEmail(email) {
     return emailValid
 }
 
-function login(email, password) {
+function login(email, senha) {
     var settings = {
-        "url": "localhost:3000/usuarios/login/"+email+"/"+password,
+        "url": "https://rest-api-ey.herokuapp.com/candidatos/login/" + email + "/" + senha,
         "method": "GET",
         "timeout": 0,
     };
 
     $.ajax(settings).done(function (data) {
-        if (data.response.usuario.length >= 0) {
-            localStorage.setItem('user', JSON.stringify(data.response.usuario[0]))
-            location.href = "http://127.0.0.1:5500/html/home.html"
+        if (data.response.candidato.length >= 0) {
+            location.href = "http://127.0.0.1:5500/html/AM/jornadas.html"
+            localStorage.setItem('user', JSON.stringify(data.response.candidato[0]))
         }
     });
-
 
 }
 $('#loginBtn').on('click', function () {

@@ -64,42 +64,6 @@ $("#createUser").on("click", function () {
     isValid() ? registerUser() : ''
 })
 
-$("#addBankAccount").on("click", function () {
-    if ($("#inputToken").val() != '') {
-        validateBank($("#inputToken").val())
-    } else {
-        $(`.errorToken`).addClass('show')
-        $(`#inputToken`).addClass('error')
-    }
-})
-
-function validateBank(token) {
-    JsLoadingOverlay.show(configs);
-    var settings = {
-        "url": "localhost:3000/contas/pesquisar/" + token,
-        "method": "GET",
-        "timeout": 0,
-    };
-
-    $.ajax(settings).done(function (data) {
-        if (data.response.length >= 0) {
-            banks.push(data.response[0])
-            $(".addBanks").append(`<p class="banks">${data.response[0].banco} - ${data.response[0].token}</p>`)
-            $("#inputToken").val('')
-            $(`.errorToken`).removeClass('show')
-            $(`#inputToken`).removeClass('error')
-            console.log('teste', banks)
-            localStorage.setItem('banks', JSON.stringify(banks))
-        } else {
-            $(`.errorToken`).addClass('show')
-            $(`#inputToken`).addClass('error')
-            console.log('error')
-        }
-        JsLoadingOverlay.hide();
-    });
-}
-
-
 function isValid() {
     if (!isEmpty()) {
         if (validatePassword($('#inputPassword').val(), $('#inputPasswordConfirm').val())) {
@@ -125,10 +89,6 @@ function registerUser() {
         "telefone": $('#inputCellphone').val(),
         "dtnascimento": $('#inputBirthday').val(),
         "senha": $('#inputPassword').val(),
-        "cep": $('#inputCEP').val(),
-        "logradouro": $('#inputStreet').val(),
-        "numero": $('#inputNumber').val(),
-        "complemento": $('#inputComplemento').val(),
         "cidade": $('#inputCidade').val(),
         "uf": $('#inputState').val()
     }
@@ -138,7 +98,7 @@ function registerUser() {
 function isEmpty() {
     let isEmpty = false
     $('.inputField-cadastro').each(function (index, field) {
-        if($(field).attr('id') != 'inputComplemento'){
+        if ($(field).attr('id') != 'inputComplemento') {
             if ($(field).val() == "" && $(field).attr('id') != 'inputToken') {
                 $(`.error${$(field).attr('id').replace("input", "")}`).addClass('show')
                 $(`#${$(field).attr('id')}`).addClass('error')
@@ -181,7 +141,7 @@ function validateCPF(cpf) {
 function postUser(user) {
     JsLoadingOverlay.show(configs);
     var settings = {
-        "url": "localhost:3000/usuarios/cadastro",
+        "url": "https://rest-api-ey.herokuapp.com/candidatos/cadastro",
         "method": "POST",
         "timeout": 0,
         "headers": {
@@ -191,41 +151,21 @@ function postUser(user) {
     };
 
     $.ajax(settings).done(function (data) {
-        if (data.response.mensagem = "Usuário cadastrado com sucesso!!") {
-            login(user.email, user.senha)
-        }
+        login(user.email, user.senha)
     });
 }
 
 function login(email, senha) {
     var settings = {
-        "url": "localhost:3000/usuarios/login/ronaldo@gmail.com/R1234",
+        "url": "https://rest-api-ey.herokuapp.com/candidatos/login/" + email + "/" + senha,
         "method": "GET",
         "timeout": 0,
     };
 
     $.ajax(settings).done(function (data) {
-        if (data.response.usuario.length >= 0) {
-            let banks = JSON.parse(localStorage.getItem('banks'))
-            localStorage.setItem('user', JSON.stringify(data.response.usuario[0]))
-            banks.forEach(bank => {
-                linkBank(bank.idconta, data.response.usuario[0].id)
-            });
-            location.href = "http://127.0.0.1:5500/html/perfil_investidor.html"
+        if (data.response.candidato.length >= 0) {
+            location.href = "http://127.0.0.1:5500/html/AM/jornadas.html"
         }
     });
 
-}
-
-function linkBank() {
-    var settings = {
-        "url": "localhost:3000/contas/alterar/1/1",
-        "method": "PATCH",
-        "timeout": 0,
-    };
-
-    $.ajax(settings).done(function (data) {
-        JsLoadingOverlay.hide();
-        console.log(data.message)
-    });
 }

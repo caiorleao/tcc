@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Extrato</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Karla' rel='stylesheet'>
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand navbar-dark" aria-label="Second navbar example">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="login.html"><img src="../../img/ey-white-logo.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02"
+                aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsExample02">
+
+            </div>
+        </div>
+    </nav>
+    <div class="content">
+        <div class="dashboard">
+            <div class="container">
+                <div class="row ">
+                    <div class="cards cadastro-ey">
+                        <div class="contentCard contentCard-three card1 manualInout">
+                            <div class="contentCard-body cadastro-body">
+                                <div class="inOutForm cadastroForm text-white">
+                                    <label for="inputFirstName" class="inputLabel">Nome</label>
+                                    <input type="text" class="form-control inputField inputField-cadastro"
+                                        id="inputFirstName" placeholder="Nome">
+                                    <p class="error_message errorFirstName">Insira um nome</p>
+
+                                    <label for="inputLastName" class="inputLabel">Sobrenome</label>
+                                    <input type="text" class="form-control inputField inputField-cadastro"
+                                        id="inputLastName" placeholder="Sobrenome">
+                                    <p class="error_message errorLastName">Insira um sobrenome</p>
+
+                                    <label for="inputEmail" class="inputLabel">Email</label>
+                                    <input type="text" class="form-control inputField inputField-cadastro"
+                                        id="inputEmail" placeholder="Email">
+                                    <p class="error_message errorEmail">Insira um email válido</p>
+
+                                    <label for="inputCPF" class="inputLabel">CPF</label>
+                                    <input type="text" class="form-control inputField inputField-cadastro" id="inputCPF"
+                                        placeholder="CPF">
+                                    <p class="error_message errorCPF">Insira um CPF válido</p>
+
+                                    <label for="inputBirthday" class="inputLabel">Data de nascimento</label>
+                                    <input type="text" class="form-control inputField inputField-cadastro"
+                                        id="inputBirthday" placeholder="Data de nascimento">
+                                    <p class="error_message errorBirthday">Insira uma data de nascimento</p>
+
+                                    <label for="inputPassword" class="inputLabel">Senha</label>
+                                    <input type="password" class="form-control inputField inputField-cadastro"
+                                        id="inputPassword" placeholder="Senha">
+                                    <p class="error_message errorPassword">A senha precisa de mínimo 8 caracteres,
+                                        incluindo letra e número</p>
+
+                                    <label for="inputPasswordConfirm" class="inputLabel">Confirmar senha</label>
+                                    <input type="password" class="form-control inputField inputField-cadastro"
+                                        id="inputPasswordConfirm" placeholder="Confirmar senha">
+                                    <p class="error_message errorPasswordConfirm">A senha precisa de mínimo 8
+                                        caracteres,
+                                        incluindo letra e número</p>
+                                    <label for="inputCellphone" class="inputLabel">Telefone</label>
+                                    <input type="text" class="form-control inputField inputField-cadastro"
+                                        id="inputCellphone" placeholder="11 99817-3204">
+                                    <p class="error_message errorCellphone">Insira um telefone válido</p>
+                                    <label for="inputCidade" class="inputLabel">Cidade</label>
+                                    <input type="text" class="form-control inputField inputField-cadastro"
+                                        id="inputCidade" placeholder="São João da bolha">
+                                    <p class="error_message errorCidade">Insira uma rua</p>
+
+                                    <label for="inputState" class="inputLabel">Estado</label>
+                                    <select id="inputState" class="form-control inputField inputField-cadastro">
+                                        <option value="AC">Acre</option>
+                                        <option value="AL">Alagoas</option>
+                                        <option value="AP">Amapá</option>
+                                        <option value="AM">Amazonas</option>
+                                        <option value="BA">Bahia</option>
+                                        <option value="CE">Ceará</option>
+                                        <option value="DF">Distrito Federal</option>
+                                        <option value="ES">Espírito Santo</option>
+                                        <option value="GO">Goiás</option>
+                                        <option value="MA">Maranhão</option>
+                                        <option value="MT">Mato Grosso</option>
+                                        <option value="MS">Mato Grosso do Sul</option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="PA">Pará</option>
+                                        <option value="PB">Paraíba</option>
+                                        <option value="PR">Paraná</option>
+                                        <option value="PE">Pernambuco</option>
+                                        <option value="PI">Piauí</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="RN">Rio Grande do Norte</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                        <option value="RO">Rondônia</option>
+                                        <option value="RR">Roraima</option>
+                                        <option value="SC">Santa Catarina</option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="SE">Sergipe</option>
+                                        <option value="TO">Tocantins</option>
+                                        <option value="EX">Estrangeiro</option>
+                                    </select>
+                                    <button class="inputButtonForm cadastrarUsuario" id="createUser">Cadastrar
+                                        Usuário</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-muted">© 2022 EY</p>
+
+        <a href="/"
+            class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+                <use xlink:href="#bootstrap"></use>
+            </svg>
+        </a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-loading-overlay@1.1.0/dist/js-loading-overlay.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script type="module" src="../../js/cadastro.js"></script>
+
+
+</body>
+
+</html>
